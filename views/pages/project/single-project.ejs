@@ -9,7 +9,7 @@
   <div class="container">
     <ol class="tasks-list" start="0">
       <li v-for="stage in stages">
-        <h2 @click="clickEditStage(stage.id)">{{ stage.title }}</h2>
+        <h2>{{ stage.title }}</h2>
         <ul>
           <li v-for="task in stage.tasks">
             <div @click="clickEditTask(task.id)" class="task" data-toggle="tooltip" data-placement="bottom" :data-original-title="task.status" :data-status="task.status">
