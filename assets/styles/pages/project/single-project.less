@@ -1,0 +1,76 @@
+#single-project {
+
+	// Tasks list
+	ol.tasks-list {
+	  list-style-type: none;
+	  margin: 0;
+	  border-left: 1px solid @black;
+	  > li {
+	    counter-increment: customlistcounter;
+	    position: relative;
+	    padding: 0 0 40px 0px;
+	    &:last-child {
+	    	padding-bottom: 0;
+	    }
+	    >h2 {
+	      padding: 8px 12px;
+	    }
+	    a {
+	    	color: @black;
+	    	text-decoration: underline;
+	    }
+	    .task {
+	      padding: 15px;
+	      border: 1px solid rgba(0,0,0,0);
+	      border-radius: 50px;
+	      vertical-align: bottom;
+	      transition: box-shadow 0.2s;
+	      a,
+	      span {
+	      	display: inline-block;
+	      	vertical-align: middle;
+	      }
+
+	      &:hover {
+	      	cursor: pointer;
+	        border: 1px solid rgba(0,0,0,0.1);
+	        box-shadow: 0px 5px 5px -5px rgba(0,0,0,0.2);
+	      }
+				.title {
+				}
+	      .date {
+	      	.small-caps;
+	      }
+	      .status {
+	      	width: 15px;
+	      	height: 15px;
+	      	border-radius: 50%;
+	      	vertical-align: middle;
+	      	margin: 0 5px 0 3px;
+	      }
+	    }
+
+	    // Style OL counter
+	    &:before {
+	      content: counter(customlistcounter) " ";
+	      .h2;
+	      width: 1em;
+	      position: absolute;
+	      left: -1.35em;
+	      text-align: center;
+	      background: #fff;
+	      padding: 8px;
+	    }
+	    &:first-child {
+	      counter-reset: customlistcounter;
+	    }
+
+	    > ul {
+	      margin: 0;
+	      padding: 0;
+	      list-style: none;
+	    }
+	  }
+	}
+
+}

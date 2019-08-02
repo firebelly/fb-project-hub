@@ -1,0 +1,82 @@
+// Base project styles
+.project {
+  // Large blue header
+  header {
+    background: @blue;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    min-height: 200px;
+    .title {
+      flex: 0 1 50%;
+    }
+    h4 {
+      .small-caps;
+    }
+  }
+
+  // Give container some padding
+  .container {
+    padding: 60px 0;
+  }
+  ul {
+    list-style: none;
+  }
+}
+
+// Tooltips
+.tooltip {
+  .small-caps;
+  .tooltip-inner {
+    background: #fff;
+    color: @black;
+  }
+}
+
+// Datepicker
+#ui-datepicker-div {
+  z-index: 2000 !important;
+}
+
+// Status colors
+[data-status="ready-for-review"] {
+  .tooltip-inner,
+  .status {
+    background: #E5DBFF !important;
+  }
+  .arrow::before {
+    border-bottom-color: #E5DBFF !important;
+  }
+}
+[data-status="approved"] {
+  .tooltip-inner,
+  .status {
+    background: #A3E2B1;
+  }
+  .arrow::before {
+    border-bottom-color: #A3E2B1 !important;
+  }
+}
+[data-status="in-progress"] {
+  .tooltip-inner,
+  .status {
+    background: #FED99E;
+  }
+  .arrow::before {
+    border-bottom-color: #FED99E !important;
+  }
+}
+[data-status="not-started"] {
+  .tooltip-inner,
+  .status {
+    background: #DCDCDC;
+  }
+  .arrow::before {
+    border-bottom-color: #DCDCDC !important;
+  }
+}
+
+// Specific styles for all projects page
+#all-projects {}

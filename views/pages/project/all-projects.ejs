@@ -1,0 +1,33 @@
+<div id="all-projects" class="project" v-cloak>
+  <header>
+    <div class="title">
+      <h2>Project Hub</h2>
+    </div>
+  </header>
+
+  <div class="container">
+    <ul class="projects-list">
+      <li v-for="client in clients">
+        <h2>{{ client.title }}</h2>
+        <ul>
+          <li v-for="project in client.projects">
+            <h4><a :href="'/projects/' + project.id">{{ project.title }}</a></h4>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Not used yet -->
+  <modal class="edit-client-modal" v-if="modal==='editClient'" @close="closeEditClientModal()" v-cloak>
+    <div class="modal-header">
+      <h2 class="modal-title">Edit Client</h2>
+      <button type="button" class="modal-close-button" data-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-footer flex-row-reverse justify-content-between">
+      <button type="button" data-dismiss="modal" class="btn btn-info">Close</button>
+      <button type="button" data-dismiss="modal" class="btn btn-outline-info">Cancel</button>
+    </div>
+  </modal>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
