@@ -3,7 +3,10 @@
 	// Tasks list
 	ol.tasks-list {
 	  list-style-type: none;
-	  margin: 0;
+	  margin: 0 0 0 50px;
+	  @media (min-width: 768px) {
+	  	margin: 0;
+	  }
 	  border-left: 1px solid @black;
 	  > li {
 	    counter-increment: customlistcounter;
@@ -25,7 +28,6 @@
 	      border-radius: 50px;
 	      vertical-align: bottom;
 	      transition: box-shadow 0.2s;
-	      a,
 	      span {
 	      	display: inline-block;
 	      	vertical-align: middle;
