@@ -13,9 +13,10 @@ module.exports.bootstrap = async function() {
 
   // Import dependencies
   var path = require('path');
+  var moment = require('moment');
 
   // This bootstrap version indicates what version of fake data we're dealing with here.
-  var HARD_CODED_DATA_VERSION = 2;
+  var HARD_CODED_DATA_VERSION = 4;
 
   // This path indicates where to store/look for the JSON file that tracks the "last run bootstrap info"
   // locally on this development computer (if we happen to be on a development computer).
@@ -59,18 +60,21 @@ module.exports.bootstrap = async function() {
   }//∞
 
   // By convention, this is a good place to set up fake data during development.
-  await User.createEach([
-    { emailAddress: 'developer@firebellydesign.com', fullName: 'FB Dev', isSuperAdmin: true, password: await sails.helpers.passwords.hashPassword('abc123') },
-  ]);
+  var user1 = await User.create({
+    emailAddress: 'developer@firebellydesign.com', fullName: 'FB Dev', isSuperAdmin: true, password: await sails.helpers.passwords.hashPassword('abc123')
+  }).fetch();
+  var user2 = await User.create({
+    emailAddress: 'nate@firebellydesign.com', fullName: 'Nate Beaty', isSuperAdmin: false, password: await sails.helpers.passwords.hashPassword('abc123')
+  }).fetch();
 
-  var client = await Client.create({ title: 'Onward' }).fetch();
+  var client = await Client.create({ title: 'Onward', users: [ user2.id ] }).fetch();
   var project = await Project.create({ title: 'Test Project', client: client.id }).fetch();
   var stage1 = await Stage.create({ title: 'Stage 1', project: project.id }).fetch();
   var stage2 = await Stage.create({ title: 'Stage 2', project: project.id }).fetch();
-  var task1 = await Task.create({ title: 'Task 1', stage: stage1.id, position: 1 }).fetch();
-  var task2 = await Task.create({ title: 'Task 2', stage: stage1.id, position: 2 }).fetch();
-  var task3 = await Task.create({ title: 'Task 3', stage: stage2.id, position: 2 }).fetch();
-  var task4 = await Task.create({ title: 'Task 4', stage: stage2.id, position: 2 }).fetch();
+  var task1 = await Task.create({ title: 'Task 1', stage: stage1.id, position: 1, status: 'Approved', due: moment().add(1, 'months').format('X') }).fetch();
+  var task2 = await Task.create({ title: 'Task 2', stage: stage1.id, position: 2, status: 'In Progress', due: moment().add(2, 'months').format('X') }).fetch();
+  var task3 = await Task.create({ title: 'Task 3', stage: stage2.id, position: 3, status: 'In Progress', due: moment().add(2, 'months').format('X') }).fetch();
+  var task4 = await Task.create({ title: 'Task 4', stage: stage2.id, position: 4, status: 'Ready for Review', due: moment().add(2, 'months').format('X') }).fetch();
 
   // Save new bootstrap version
   await sails.helpers.fs.writeJson.with({
