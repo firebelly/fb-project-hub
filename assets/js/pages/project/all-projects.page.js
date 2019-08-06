@@ -25,7 +25,12 @@ parasails.registerPage('all-projects', {
   mounted: async function() {
     // Focus first input when opening modal
     $('body').on('shown.bs.modal', '.mdl', function () {
-      $('.modal-dialog input:visible:enabled:first').focus();
+      var el = $('.modal-dialog input:visible:enabled:first');
+      el.focus();
+      // New item dialog? Select placeholder title
+      if (el.val().match(/^New/)) {
+        el.select();
+      }
     })
   },
 
@@ -33,6 +38,42 @@ parasails.registerPage('all-projects', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+
+
+
+    ///////////////////////
+    // Client forms/modals
+
+    // Adding client
+    clickAddClient: async function() {
+      // Returns new client
+      let result = await Cloud.addClient();
+      this.clients.push(result.client);
+
+      // Set form data to stage that was clicked
+      this.selectedClient = result.client;
+      this.formData = this.selectedClient;
+
+      // Open edit client modal w/ new client
+      this.editClientModalOpen = true;
+    },
+
+    // Adding project for client
+    clickAddProject: async function(clientId) {
+      // Submit to client/add-project, returns new project
+      let result = await Cloud.addProject(clientId);
+      this.goto('/projects/' + result.project.id + '#new');
+    },
+
+    // Deleting client
+    clickDestroyClient: async function(clientId) {
+      if (confirm('Are you sure? All client’s projects and tasks will also be deleted.')) {
+        _.remove(this.clients, { id: clientId });
+        await Cloud.destroyClient(clientId);
+        this._clearEditClientModal();
+      }
+    },
+
 
     _clearEditClientModal: function() {
       this.editClientModalOpen = false;

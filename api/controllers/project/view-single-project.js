@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'View single',
+  friendlyName: 'View Single Project',
 
 
-  description: 'Display "Single" page.',
+  description: 'Display single project page with all stages + tasks.',
 
 
   exits: {
@@ -24,9 +24,11 @@ module.exports = {
     let moment = require('moment');
 
     let project = await Project.findOne({ id: this.req.param('id') }).populate('client');
+
     if (!project) {
       throw 'notFound';
     }
+
     let stages = await Stage.find({ project: project.id }).populate('tasks');
 
     // Human friendly format of due date

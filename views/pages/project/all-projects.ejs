@@ -13,8 +13,10 @@
           <li v-for="project in client.projects">
             <h4><a :href="'/projects/' + project.id">{{ project.title }}</a></h4>
           </li>
+          <button class="add-button" @click="clickAddProject(client.id)">+ Add Project</button>
         </ul>
       </li>
+      <button class="add-button mt-4" @click="clickAddClient()">+ Add Client</button>
     </ul>
   </div>
 

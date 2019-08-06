@@ -38,7 +38,7 @@ module.exports = {
       throw 'notFound';
     }
 
-    // Add new task in Stage
+    // Add new Task in Stage
     let task = await Task.create({ title: 'New Task', stage: stage.id, position: stage.tasks.length + 1, status: 'Ready for Review', due: moment().add(1, 'months').format('X') }).fetch();
 
     // Human-formatted date

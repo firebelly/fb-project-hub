@@ -10,6 +10,11 @@
     color: red;
     cursor: pointer;
   }
+  a.btn-danger {
+    &, &:hover {
+      color: #fff;
+    }
+  }
 
   // Label notes
   label {
@@ -23,10 +28,14 @@
   // Add buttons
   .add-button {
     cursor: pointer;
-    font-size: 11px;
-    background: @blue;
-    border: none;
+    font-size: 12px;
+    border: 1px solid @blue;
+    color: @blue;
     border-radius: 4px;
+    &:hover {
+      background: @blue;
+      color: @white;
+    }
   }
 
   // Large blue header
@@ -108,4 +117,16 @@
 }
 
 // Specific styles for all projects page
-#all-projects {}
+#all-projects {
+  .projects-list {
+    h2 {
+      margin: 30px 0 10px;
+    }
+    >li:nth-child(1) {
+      h2 {
+        margin-top: 0;
+      }
+    }
+  }
+
+}

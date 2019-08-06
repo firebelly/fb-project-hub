@@ -47,19 +47,30 @@ module.exports.routes = {
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
   // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
   // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
-  '/api/v1/account/logout':                              { action: 'account/logout' },
-  'PUT   /api/v1/account/update-password':               { action: 'account/update-password' },
-  'PUT   /api/v1/account/update-profile':                { action: 'account/update-profile' },
-  'PUT   /api/v1/account/update-billing-card':           { action: 'account/update-billing-card' },
-  'PUT   /api/v1/entrance/login':                        { action: 'entrance/login' },
+  '/api/v1/account/logout':                                { action: 'account/logout' },
+  'PUT    /api/v1/account/update-password':                { action: 'account/update-password' },
+  'PUT    /api/v1/account/update-profile':                 { action: 'account/update-profile' },
+  'PUT    /api/v1/account/update-billing-card':            { action: 'account/update-billing-card' },
+  'PUT    /api/v1/entrance/login':                         { action: 'entrance/login' },
   // 'POST  /api/v1/entrance/signup':                       { action: 'entrance/signup' },
-  'POST  /api/v1/entrance/send-password-recovery-email': { action: 'entrance/send-password-recovery-email' },
-  'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
+  'POST   /api/v1/entrance/send-password-recovery-email':  { action: 'entrance/send-password-recovery-email' },
+  'POST   /api/v1/entrance/update-password-and-login':     { action: 'entrance/update-password-and-login' },
 
-  'DELETE  /api/v1/task/:id':                             { action: 'task/destroy-task' },
-  'PUT   /api/v1/task/:id':                               { action: 'task/update-task' },
-  'PUT   /api/v1/stage/:id':                              { action: 'stage/update-stage' },
-  'POST  /api/v1/stage/add-task/:id':                     { action: 'stage/add-task' },
-  'PUT   /api/v1/client/:id':                             { action: 'client/update-client' },
+  'POST   /api/v1/client/add-client':                      { action: 'client/add-client' },
+  'POST   /api/v1/client/add-project/:id':                 { action: 'client/add-project' },
+  'PUT    /api/v1/client/:id':                             { action: 'client/update-client' },
+  'DELETE /api/v1/client/:id':                             { action: 'client/destroy-client' },
+
+  'PUT    /api/v1/project/:id':                            { action: 'project/update-project' },
+  'POST   /api/v1/project/add-stage/:id':                  { action: 'project/add-stage' },
+  'DELETE /api/v1/project/:id':                            { action: 'project/destroy-project' },
+
+  'POST   /api/v1/stage/add-task/:id':                     { action: 'stage/add-task' },
+  'PUT    /api/v1/stage/:id':                              { action: 'stage/update-stage' },
+  'DELETE /api/v1/stage/:id':                              { action: 'stage/destroy-stage' },
+
+  'PUT    /api/v1/task/:id':                               { action: 'task/update-task' },
+  'DELETE /api/v1/task/:id':                               { action: 'task/destroy-task' },
+
 
 };
