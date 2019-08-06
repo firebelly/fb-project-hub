@@ -43,7 +43,7 @@ module.exports = {
 
     // Assign starter stage + task to project
     var stage = await Stage.create({ title: 'Stage 1', project: project.id }).fetch();
-    var task = await Task.create({ title: 'Task 1', stage: stage.id, position: 1, status: 'In Progress', due: moment().add(1, 'months').format('X') }).fetch();
+    var task = await Task.create({ title: 'Task 1', stage: stage.id, position: 1, status: 'Not Started', due: moment().add(1, 'months').format('X') }).fetch();
 
     return {
       project
