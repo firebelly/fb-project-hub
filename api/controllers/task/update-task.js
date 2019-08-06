@@ -19,7 +19,7 @@ module.exports = {
       required: true
     },
 
-    due: {
+    due_formatted: {
       type: 'string'
     },
 
@@ -44,7 +44,7 @@ module.exports = {
   },
 
 
-  fn: async function ({id, title, due, url, status}) {
+  fn: async function ({ id, title, due_formatted, url, status }) {
     var moment = require('moment');
     var task = await Task.findOne({ id });
 
@@ -55,11 +55,11 @@ module.exports = {
 
     // Format timestamp from datepicker
     var due_timestamp = '';
-    if (due) {
-      due_timestamp = moment(due, 'MM/DD/YYYY').format('X');
+    if (due_formatted) {
+      due_timestamp = moment(due_formatted, 'MM/YY').format('X');
     }
 
-    // Update the `Task` record to show it is being borrowed.
+    // Update the `Task` record
     await Task.update({ id }).set({
       title: title,
       due: due_timestamp,

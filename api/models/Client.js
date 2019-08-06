@@ -5,6 +5,10 @@ module.exports = {
     projects: {
       collection: 'Project',
       via: 'client'
-    }
+    },
+    users: {
+      collection: 'User',
+      via: 'clients'
+    },
   },
 };

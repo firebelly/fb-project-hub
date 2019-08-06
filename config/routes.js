@@ -56,9 +56,10 @@ module.exports.routes = {
   'POST  /api/v1/entrance/send-password-recovery-email': { action: 'entrance/send-password-recovery-email' },
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
 
-  // 'POST  /api/v1/task':                                 { action: 'task/add-task' },
-  // 'DELETE  /api/v1/task/:id':                           { action: 'task/destroy-task' },
-  'PUT   /api/v1/task/:id':                             { action: 'task/update-task' },
+  'DELETE  /api/v1/task/:id':                             { action: 'task/destroy-task' },
+  'PUT   /api/v1/task/:id':                               { action: 'task/update-task' },
+  'PUT   /api/v1/stage/:id':                              { action: 'stage/update-stage' },
+  'POST  /api/v1/stage/add-task/:id':                     { action: 'stage/add-task' },
   'PUT   /api/v1/client/:id':                             { action: 'client/update-client' },
 
 };

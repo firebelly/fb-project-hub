@@ -21,20 +21,18 @@ module.exports = {
 
 
   fn: async function () {
-    var moment = require('moment');
+    let moment = require('moment');
 
-    var project = await Project.findOne({ id: this.req.param('id') }).populate('client');
+    let project = await Project.findOne({ id: this.req.param('id') }).populate('client');
     if (!project) {
       throw 'notFound';
     }
-    var stages = await Stage.find({ project: project.id }).populate('tasks');
+    let stages = await Stage.find({ project: project.id }).populate('tasks');
 
     // Human friendly format of due date
-    for (var stage of stages) {
-      for (var task of stage.tasks) {
+    for (let stage of stages) {
+      for (let task of stage.tasks) {
         task.due_formatted = moment.unix(task.due).format('MM/YY');
-        task.due_formatted_full = moment.unix(task.due).format('MM/DD/YYYY');
-        task.status_slug = task.status.replace(/ /g, '-').toLowerCase();
       }
     }
 

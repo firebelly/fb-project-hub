@@ -13,8 +13,9 @@ parasails.registerPage('single-project', {
     // Server error state
     cloudError: '',
 
-    // Modal closed
-    editTaskModalOpen: false
+    // Modals
+    editTaskModalOpen: false,
+    editStageModalOpen: false,
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -37,7 +38,7 @@ parasails.registerPage('single-project', {
 
     // Focus first input when opening modal
     $('body').on('shown.bs.modal', '.mdl', function () {
-      $('.modal-dialog input:visible:enabled:first').focus();
+      $('.modal-dialog input:visible:enabled:first').focus().select();
     })
   },
 
@@ -46,6 +47,9 @@ parasails.registerPage('single-project', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
 
   methods: {
+
+    ///////////////////////
+    // Task forms/modals
 
     _clearEditTaskModal: function() {
       this.editTaskModalOpen = false;
@@ -71,7 +75,7 @@ parasails.registerPage('single-project', {
       this._clearEditTaskModal();
     },
 
-    parseForm: function() {
+    parseTaskForm: function() {
       // Clear out any pre-existing error messages.
       this.formErrors = {};
 
@@ -81,20 +85,95 @@ parasails.registerPage('single-project', {
       if(!argins.title) {
         this.formErrors.title = true;
       }
-      // todo: check URL? due date?
 
       // If any errors, just return (vuejs will show errors based on formErrors state)
       if (Object.keys(this.formErrors).length > 0) {
         return;
       }
-      this.selectedTask = this.formData;
 
       return argins;
     },
 
-    submittedForm: function() {
+    submittedTaskForm: function() {
       this._clearEditTaskModal();
     },
+
+    //
+
+    _clearEditStageModal: function() {
+      this.editStageModalOpen = false;
+      this.selectedStage = undefined;
+      this.cloudError = '';
+    },
+
+    // Adding task
+    clickAddTask: async function(stageId) {
+      // Find stage in nested stages.stages by id
+      this.selectedStage = _.find(this.stages, { id: stageId })
+
+      // Submit to stage/add-task, returns new task
+      let result = await Cloud.addTask(stageId);
+      this.selectedStage.tasks.push(result.task);
+
+      // Set form data to stage that was clicked
+      this.selectedTask = result.task;
+      this.formData = this.selectedTask;
+
+      // Open edit task modal w/ new task
+      this.editTaskModalOpen = true;
+    },
+
+    clickDestroyTask: async function(taskId) {
+      if (confirm('Are you sure?')) {
+        let stage = _.find(this.stages, { tasks: [ { id: taskId } ]});
+        _.remove(stage.tasks, { id: taskId });
+        await Cloud.destroyTask(taskId);
+        this._clearEditTaskModal();
+      }
+    },
+
+
+    ///////////////////////
+    // Stage forms/modals
+
+    clickEditStage: function(stageId) {
+      // Find stage in nested stages.stages by id
+      this.selectedStage = _.find(this.stages, { id: stageId })
+
+      // Set form data to stage that was clicked
+      this.formData = this.selectedStage;
+
+      // Open modal
+      this.editStageModalOpen = true;
+    },
+
+    closeEditStageModal: function() {
+      this._clearEditStageModal();
+    },
+
+    parseStageForm: function() {
+      // Clear out any pre-existing error messages.
+      this.formErrors = {};
+
+      var argins = _.extend({ id: this.selectedStage.id }, this.formData);
+
+      // Validate data
+      if(!argins.title) {
+        this.formErrors.title = true;
+      }
+
+      // If any errors, just return (vuejs will show errors based on formErrors state)
+      if (Object.keys(this.formErrors).length > 0) {
+        return;
+      }
+
+      return argins;
+    },
+
+    submittedStageForm: function() {
+      this._clearEditStageModal();
+    },
+
 
   }
 });
