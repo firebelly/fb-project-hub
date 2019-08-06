@@ -25,6 +25,9 @@ module.exports = {
     // Add new Client
     let client = await Client.create({ title: 'New client' }).fetch();
 
+    // Empty array of relations for view
+    client.user_ids = [];
+
     return {
       client
     }

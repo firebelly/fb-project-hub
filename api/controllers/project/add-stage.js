@@ -40,7 +40,8 @@ module.exports = {
 
     // Add new Stage to Project
     let stage = await Stage.create({ title: 'New stage', project: project.id, position: project.stages.length + 1 }).fetch();
-    // Empty array for tasks
+
+    // Empty array of relations for view
     stage.tasks = [];
 
     return {
