@@ -35,8 +35,11 @@ module.exports = {
       throw 'notFound';
     }
 
-    // Archive the record
-    await Stage.archiveOne({ id });
+    // Destroy relations
+    await Task.destroy({ stage: stage.id });
+
+    // Destroy the record
+    await Stage.destroyOne({ id });
   }
 
 

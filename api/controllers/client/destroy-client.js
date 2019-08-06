@@ -35,8 +35,18 @@ module.exports = {
       throw 'notFound';
     }
 
-    // Archive the record
-    await Client.archiveOne({ id });
+    // Destroy relations
+    let projects = await Project.find({ client: client.id }).populate('stages');
+    for (let project of projects) {
+      for (let stage of project.stages) {
+        await Task.destroy({ stage: stage.id });
+        await Stage.destroyOne({ id: stage.id });
+      }
+      await Project.destroyOne({ id: project.id });
+    }
+
+    // Destroy the record
+    await Client.destroyOne({ id });
   }
 
 

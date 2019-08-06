@@ -28,15 +28,21 @@ module.exports = {
 
 
   fn: async function ({ id  }) {
-    let project = await Project.findOne({ id });
+    let project = await Project.findOne({ id }).populate('stages');
 
     // Ensure the thing still exists.
     if (!project) {
       throw 'notFound';
     }
 
-    // Archive the record
-    await Project.archiveOne({ id });
+    // Destroy relations
+    for (let stage of project.stages) {
+      await Task.destroy({ stage: stage.id });
+      await Stage.destroyOne({ id: stage.id });
+    }
+
+    // Destroy the record
+    await Project.destroyOne({ id });
   }
 
 

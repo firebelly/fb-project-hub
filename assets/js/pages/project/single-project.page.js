@@ -256,6 +256,14 @@ parasails.registerPage('single-project', {
       this._clearEditProjectModal();
     },
 
+    clickDestroyProject: async function() {
+      if (confirm('Are you sure? This will also delete all stages and tasks in project.')) {
+        await Cloud.destroyProject(this.project.id);
+        this.goto('/');
+      }
+    },
+
+
 
   }
 });

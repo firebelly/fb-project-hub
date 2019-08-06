@@ -35,8 +35,8 @@ module.exports = {
       throw 'notFound';
     }
 
-    // Archive the record
-    await Task.archiveOne({ id });
+    // Destroy the record
+    await Task.destroyOne({ id });
   }
 
 

@@ -126,12 +126,10 @@
         </div>
         <p class="text-danger" v-if="cloudError"><small>An error occured while processing the form.</small></p>
       </div>
-      <div class="modal-footer">
-        <a class="destroy-link" @click="clickDestroyProject(formData.id)">Delete</a>
-        <div class="ml-auto">
-          <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
-          <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
-        </div>
+      <div class="modal-footer flex-row-reverse">
+        <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
+        <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
+        <a class="mr-auto btn btn-danger" @click="clickDestroyProject(formData.id)">Delete</a>
       </div>
     </ajax-form>
   </modal>
