@@ -34,11 +34,13 @@ parasails.registerPage('single-project', {
 
   mounted: async function() {
     // Init tooltips
-    $('[data-toggle="tooltip"]')
-    .tooltip()
-    .hover(function(){
-      // Inherit data-status attribute from div for CSS styles
-      $('.tooltip').attr('data-status', $(this).attr('data-status'));
+    $('#single-project')
+    .tooltip({
+      selector: '[data-toggle="tooltip"]',
+    })
+    .on('mouseenter', '[data-toggle="tooltip"]', function() {
+       // Inherit data-status attribute from div for CSS styles
+       $('.tooltip').attr('data-status', $(this).attr('data-status'));
     });
 
     // Focus first input when opening modal
@@ -125,15 +127,6 @@ parasails.registerPage('single-project', {
       // Set form data to stage that was clicked
       this.selectedTask = result.task;
       this.formData = this.selectedTask;
-
-      $('.project')
-      .tooltip({
-        selector: '[data-toggle="tooltip"]',
-      })
-      .hover(function(){
-        // Inherit data-status attribute from div for CSS styles
-        $('.tooltip').attr('data-status', $(this).attr('data-status'));
-      });
 
       // Open edit task modal w/ new task
       this.editTaskModalOpen = true;
