@@ -60,6 +60,9 @@
             <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
               <a class="dropdown-item" href="/account">Settings</a>
               <a class="dropdown-item" href="/logout">Sign out</a>
+              <% if(me.isSuperAdmin) { %>
+                <a class="dropdown-item" href="/users">Users</a>
+              <% } %>
             </div>
           </div>
           <!-- Only in mobile nav -->
@@ -154,6 +157,7 @@
     <script src="/js/pages/homepage.page.js"></script>
     <script src="/js/pages/project/all-projects.page.js"></script>
     <script src="/js/pages/project/single-project.page.js"></script>
+    <script src="/js/pages/user/all-users.page.js"></script>
     <!--SCRIPTS END-->
 
     <% /* Display an overlay if the current browser is not supported.
