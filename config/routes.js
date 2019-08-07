@@ -74,5 +74,9 @@ module.exports.routes = {
   'PUT    /api/v1/task/:id':                               { action: 'task/update-task' },
   'DELETE /api/v1/task/:id':                               { action: 'task/destroy-task' },
 
+  'POST   /api/v1/user/add-user':                          { action: 'user/add-user' },
+  'PUT    /api/v1/user/:id':                               { action: 'user/update-user' },
+  'DELETE /api/v1/user/:id':                               { action: 'user/destroy-user' },
+
 
 };

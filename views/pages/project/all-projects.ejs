@@ -6,6 +6,9 @@
   </header>
 
   <div class="container">
+    <div v-if="clients.length == 0" class="text-center">
+      Your account hasn't been assigned a client yet.
+    </div>
     <ul class="projects-list">
       <li v-for="client in clients">
         <h2 class="editable" @click="clickEditClient(client.id)">{{ client.title }}</h2>
@@ -17,7 +20,6 @@
         </ul>
       </li>
       <button v-if="me.isSuperAdmin" class="add-button mt-4" @click="clickAddClient()">+ Add Client</button>
-      <button v-if="me.isSuperAdmin" class="add-button mt-4 ml-2" href="/()">+ Add User</button>
     </ul>
   </div>
 
@@ -56,7 +58,7 @@
       <div class="modal-footer flex-row-reverse">
         <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
         <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
-        <a class="mr-auto btn btn-danger" @click="clickDestroyClient(formData.id)">Delete</a>
+        <span class="mr-auto btn btn-danger" @click="clickDestroyClient(formData.id)">Delete</span>
       </div>
     </ajax-form>
   </modal>

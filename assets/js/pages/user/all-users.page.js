@@ -5,6 +5,7 @@ parasails.registerPage('all-users', {
   data: {
     formErrors: {},
     selectedUser: undefined,
+    successAlert: '',
 
     // Syncing / loading state
     syncing: false,
@@ -45,11 +46,20 @@ parasails.registerPage('all-users', {
 
     // Adding user
     clickAddUser: async function() {
-      // Set form data to stage that was clicked
-      this.formData = [];
+      // Submit to user/add-user, return new user
+      let result = await Cloud.addUser();
 
-      // Open edit user modal w/ new user
-      this.addUserModalOpen = true;
+      this.users.push(result.user);
+
+      // Set form data to stage that was clicked
+      this.selectedUser = result.user;
+      this.formData = this.selectedUser;
+
+      this.editUserModalOpen = true;
+    },
+
+    clickResetAlert: function() {
+      this.successAlert = '';
     },
 
     // Deleting user
@@ -64,10 +74,15 @@ parasails.registerPage('all-users', {
     _clearEditUserModal: function() {
       this.editUserModalOpen = false;
       this.selectedUser = undefined;
+      this.formData = [];
+      this.addingUser = false;
       this.cloudError = '';
     },
 
     clickEditUser: function(userId) {
+      // Clear out alert
+      this.successAlert = '';
+
       // Find user by id
       this.selectedUser = _.find(this.users, { id: userId })
 
@@ -89,11 +104,11 @@ parasails.registerPage('all-users', {
       var argins = _.extend({ id: this.selectedUser.id }, this.formData);
 
       // Validate data
+      if(!argins.fullName) {
+        this.formErrors.fullName = true;
+      }
       if(!argins.emailAddress) {
         this.formErrors.emailAddress = true;
-      }
-      if(!argins.password) {
-        this.formErrors.password = true;
       }
 
       // If any errors, just return (vuejs will show errors based on formErrors state)
@@ -105,6 +120,7 @@ parasails.registerPage('all-users', {
     },
 
     submittedForm: function() {
+      this.successAlert = 'User updated ok!';
       this._clearEditUserModal();
     },
 
