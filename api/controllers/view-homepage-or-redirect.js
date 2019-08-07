@@ -29,6 +29,9 @@ module.exports = {
       throw {redirect:'/projects/'};
     }
 
+    // Remove this if we want a homepage for some reason?
+    throw {redirect:'/login/'};
+
     return {};
 
   }

@@ -17,12 +17,18 @@ module.exports = {
 
 
   fn: async function () {
-
-    var clients = await Client.find().populate('projects').populate('users');
+    let clients = [];
+    if (this.req.me.isSuperAdmin) {
+      clients = await Client.find().populate('projects').populate('users');
+    } else {
+      let user = await User.findOne({ id: this.req.me.id }).populate('clients');
+      let client_ids = _.map(user.clients, 'id');
+      clients = await Client.find({ id: { in: client_ids }}).populate('projects').populate('users');
+    }
     for (let client of clients) {
       client.user_ids = _.map(client.users, 'id');
     }
-    var users = await User.find();
+    let users = await User.find({ isSuperAdmin: { '!=' : 1 } });
 
     // Respond with view.
     return {

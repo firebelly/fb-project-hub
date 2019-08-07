@@ -8,16 +8,16 @@
   <div class="container">
     <ul class="projects-list">
       <li v-for="client in clients">
-        <h2 class="editable" @click="clickEditClient(client.id)" >{{ client.title }}</h2>
+        <h2 <% if(me.isSuperAdmin) { %>class="editable" @click="clickEditClient(client.id)"<% } %> >{{ client.title }}</h2>
         <ul>
           <li v-for="project in client.projects">
             <h4><a :href="'/projects/' + project.id">{{ project.title }}</a></h4>
           </li>
-          <button class="add-button" @click="clickAddProject(client.id)">+ Add Project</button>
+          <button v-if="me.superAdmin" class="add-button" @click="clickAddProject(client.id)">+ Add Project</button>
         </ul>
       </li>
-      <button class="add-button mt-4" @click="clickAddClient()">+ Add Client</button>
-      <button class="add-button mt-4 ml-2" href="/()">+ Add User</button>
+      <button v-if="me.superAdmin" class="add-button mt-4" @click="clickAddClient()">+ Add Client</button>
+      <button v-if="me.superAdmin" class="add-button mt-4 ml-2" href="/()">+ Add User</button>
     </ul>
   </div>
 

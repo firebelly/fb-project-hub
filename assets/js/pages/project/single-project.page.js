@@ -79,6 +79,14 @@ parasails.registerPage('single-project', {
       // Find task in nested stages.tasks by id
       this.selectedTask = _.find(_.flatten(_.pluck(this.stages, 'tasks')), { id: taskId })
 
+      // If not admin and task is clicked, open URL if set for task, or just do nothing
+      if (!this.me.isSuperAdmin) {
+        if (this.selectedTask.url !== '') {
+          window.open(this.selectedTask.url);
+        }
+        return false;
+      }
+
       // Set form data to task that was clicked
       this.formData = this.selectedTask;
 
