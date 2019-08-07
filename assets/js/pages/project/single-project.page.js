@@ -173,6 +173,9 @@ parasails.registerPage('single-project', {
     },
 
     clickEditStage: function(stageId) {
+      // Abort if not admin
+      if (!this.me.isSuperAdmin) { return false; }
+
       // Find stage in nested stages.stages by id
       this.selectedStage = _.find(this.stages, { id: stageId })
 
@@ -229,6 +232,9 @@ parasails.registerPage('single-project', {
     },
 
     clickEditProject: function() {
+      // Abort if not admin
+      if (!this.me.isSuperAdmin) { return false; }
+
       // Find project in nested projects.projects by id
       this.selectedProject = this.project;
 

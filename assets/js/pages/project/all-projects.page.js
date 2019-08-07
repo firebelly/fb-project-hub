@@ -82,6 +82,11 @@ parasails.registerPage('all-projects', {
     },
 
     clickEditClient: function(clientId) {
+      // Abort if not admin
+      if (!this.me.isSuperAdmin) {
+        return false;
+      }
+
       // Find client by id
       this.selectedClient = _.find(this.clients, { id: clientId })
 
