@@ -28,11 +28,13 @@ module.exports = {
       throw 'notFound';
     }
 
-    // Check if we can view this project
-    let user = await User.findOne({ id: this.req.me.id }).populate('clients');
-    let client_ids = _.map(user.clients, 'id');
-    if (!client_ids.includes(project.client.id)) {
-      throw 'notFound';
+    // If not admin, check if we can view this project
+    if (!this.req.me.isSuperAdmin) {
+      let user = await User.findOne({ id: this.req.me.id }).populate('clients');
+      let client_ids = _.map(user.clients, 'id');
+      if (!client_ids.includes(project.client.id)) {
+        throw 'notFound';
+      }
     }
 
     // Pull stages + tasks for project
