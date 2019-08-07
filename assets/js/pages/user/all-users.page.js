@@ -74,7 +74,6 @@ parasails.registerPage('all-users', {
     _clearEditUserModal: function() {
       this.editUserModalOpen = false;
       this.selectedUser = undefined;
-      this.formData = [];
       this.addingUser = false;
       this.cloudError = '';
     },
@@ -85,6 +84,9 @@ parasails.registerPage('all-users', {
 
       // Find user by id
       this.selectedUser = _.find(this.users, { id: userId })
+
+      // Always clear out newPassword field
+      this.selectedUser.newPassword = '';
 
       // Set form data to user that was clicked
       this.formData = this.selectedUser;

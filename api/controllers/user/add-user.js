@@ -32,7 +32,7 @@ module.exports = {
 
     // Vars for view
     user.lastSeenAtHumanDate = 'Never';
-    user.clients = [];
+    user.client_ids = [];
 
     return {
       user
