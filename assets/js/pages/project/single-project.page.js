@@ -111,6 +111,9 @@ parasails.registerPage('single-project', {
       if(!argins.title) {
         this.formErrors.title = true;
       }
+      if(!argins.due_formatted.match(/^[\d]{1,2}\/[\d]{2}$/)) {
+        this.formErrors.due_formatted = true;
+      }
 
       // If any errors, just return (vuejs will show errors based on formErrors state)
       if (Object.keys(this.formErrors).length > 0) {
