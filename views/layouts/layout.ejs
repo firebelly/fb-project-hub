@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
   </head>
-  <body data-issuperadmin="<%= me.isSuperAdmin %>">
+  <body data-issuperadmin="<%= me&&me.isSuperAdmin ? 'true' : 'false' %>">
     <div id="page-wrap">
       <header id="page-header" class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
         <a class="navbar-brand mr-0" href="/">Firebelly Project Hub</a>
@@ -60,7 +60,7 @@
             <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
               <a class="dropdown-item" href="/account">Settings</a>
               <a class="dropdown-item" href="/logout">Sign out</a>
-              <% if(me.isSuperAdmin) { %>
+              <% if(me&&me.isSuperAdmin) { %>
                 <a class="dropdown-item" href="/users">Users</a>
               <% } %>
             </div>

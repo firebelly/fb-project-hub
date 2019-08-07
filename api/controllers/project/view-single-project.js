@@ -22,13 +22,20 @@ module.exports = {
 
   fn: async function () {
     let moment = require('moment');
-
     let project = await Project.findOne({ id: this.req.param('id') }).populate('client');
 
     if (!project) {
       throw 'notFound';
     }
 
+    // Check if we can view this project
+    let user = await User.findOne({ id: this.req.me.id }).populate('clients');
+    let client_ids = _.map(user.clients, 'id');
+    if (!client_ids.includes(project.client.id)) {
+      throw 'notFound';
+    }
+
+    // Pull stages + tasks for project
     let stages = await Stage.find({ project: project.id }).populate('tasks');
 
     // Human friendly format of due date
@@ -38,7 +45,7 @@ module.exports = {
       }
     }
 
-    // Respond with view.
+    // Respond with view
     return {
       project,
       stages,
