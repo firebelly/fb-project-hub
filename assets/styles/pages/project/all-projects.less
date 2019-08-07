@@ -1,130 +1,29 @@
-// Large blue header
-header.main {
-  background: @blue;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 30vh;
-  min-height: 200px;
-  .title {
-    flex: 0 1 50%;
-  }
-  h4 {
-    .small-caps;
-  }
-}
-
-// Editable items
+// Editable items get pointer cursor if me.isSuperAdmin
 body[data-issuperadmin="true"] {
   .editable {
     cursor: pointer;
   }
 }
 
-// Base project styles
-.project {
-
-  a.destroy-link {
-    color: red;
-    cursor: pointer;
-  }
-  a.btn-danger {
-    &, &:hover {
-      color: #fff;
-    }
-  }
-
-  // Label notes
-  label {
-    em {
-      font-size: 11px;
-      font-style: normal;
-      opacity: 0.5;
-    }
-  }
-
-  // Add buttons
-  .add-button {
-    cursor: pointer;
-    font-size: 12px;
-    border: 1px solid @blue;
-    background: none;
-    color: @blue;
-    border-radius: 4px;
-    &:hover {
-      background: @blue;
-      color: @white;
-    }
-  }
-
-  // Give container some padding
-  .container {
-    padding: 60px 0;
-  }
-  ul {
-    list-style: none;
-  }
-}
-
-// Tooltips
-.tooltip {
-  .small-caps;
-  .tooltip-inner {
-    background: #fff;
-    color: @black;
-  }
-}
-
-// Datepicker
-#ui-datepicker-div {
-  z-index: 2000 !important;
-}
-
-// Status colors
-[data-status="Ready for Review"] {
-  .tooltip-inner,
-  .status {
-    background: #E5DBFF !important;
-  }
-  .arrow::before {
-    border-bottom-color: #E5DBFF !important;
-    border-top-color: #E5DBFF !important;
-  }
-}
-[data-status="Approved"] {
-  .tooltip-inner,
-  .status {
-    background: #A3E2B1;
-  }
-  .arrow::before {
-    border-bottom-color: #A3E2B1 !important;
-    border-top-color: #A3E2B1 !important;
-  }
-}
-[data-status="In Progress"] {
-  .tooltip-inner,
-  .status {
-    background: #FED99E;
-  }
-  .arrow::before {
-    border-bottom-color: #FED99E !important;
-    border-top-color: #FED99E !important;
-  }
-}
-[data-status="Not Started"] {
-  .tooltip-inner,
-  .status {
-    background: #DCDCDC;
-  }
-  .arrow::before {
-    border-bottom-color: #DCDCDC !important;
-    border-top-color: #DCDCDC !important;
+// Label notes
+label {
+  em {
+    font-size: 11px;
+    font-style: normal;
+    opacity: 0.5;
   }
 }
 
 // Specific styles for all projects page
 #all-projects {
+  .container {
+    padding: 60px 0;
+  }
+
+  ul {
+    list-style: none;
+  }
+
   .projects-list {
     h2 {
       margin: 30px 0 10px;

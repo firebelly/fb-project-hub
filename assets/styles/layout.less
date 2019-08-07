@@ -20,6 +20,24 @@ html, body {
     .logo {
       height: 20px;
     }
+
+    // Large blue headers
+    &.main {
+      background: @blue;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30vh;
+      min-height: 200px;
+      .title {
+        flex: 0 1 50%;
+      }
+      h4 {
+        .small-caps;
+      }
+    }
+
     a {
       cursor: pointer;
     }

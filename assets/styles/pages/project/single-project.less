@@ -1,4 +1,68 @@
+// Tooltips
+.tooltip {
+  .small-caps;
+  .tooltip-inner {
+    background: #fff;
+    color: @black;
+  }
+}
+
+// Show datepicker above modal overlay
+#ui-datepicker-div {
+  z-index: 2000 !important;
+}
+
+// Status colors
+[data-status="Ready for Review"] {
+  .tooltip-inner,
+  .status {
+    background: #E5DBFF !important;
+  }
+  .arrow::before {
+    border-bottom-color: #E5DBFF !important;
+    border-top-color: #E5DBFF !important;
+  }
+}
+[data-status="Approved"] {
+  .tooltip-inner,
+  .status {
+    background: #A3E2B1;
+  }
+  .arrow::before {
+    border-bottom-color: #A3E2B1 !important;
+    border-top-color: #A3E2B1 !important;
+  }
+}
+[data-status="In Progress"] {
+  .tooltip-inner,
+  .status {
+    background: #FED99E;
+  }
+  .arrow::before {
+    border-bottom-color: #FED99E !important;
+    border-top-color: #FED99E !important;
+  }
+}
+[data-status="Not Started"] {
+  .tooltip-inner,
+  .status {
+    background: #DCDCDC;
+  }
+  .arrow::before {
+    border-bottom-color: #DCDCDC !important;
+    border-top-color: #DCDCDC !important;
+  }
+}
+
 #single-project {
+
+  .container {
+    padding: 60px 0;
+  }
+
+  ul {
+    list-style: none;
+  }
 
   // Tasks list
   ol.tasks-list {
