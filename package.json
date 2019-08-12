@@ -1,7 +1,7 @@
 {
   "name": "fb-project-hub",
   "private": true,
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Firebelly Project Hub",
   "keywords": [],
   "dependencies": {
