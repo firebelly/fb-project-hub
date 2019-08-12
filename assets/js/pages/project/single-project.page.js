@@ -88,7 +88,7 @@ parasails.registerPage('single-project', {
             // Get id array of tasks in stage item was dragged to
             let idArr = $(evt.to).find('[data-id]').map(function() { return this.getAttribute('data-id')});
 
-            // Send request to controller to update database
+            // Move task between stages in view
             that._moveTaskToStage(taskId, stageId, idArr);
 
           },
@@ -189,6 +189,7 @@ parasails.registerPage('single-project', {
 
     // User dragged a task between stages, update view and store positions in database
     _moveTaskToStage: async function(taskId, stageId, taskIds) {
+      console.log(taskId, stageId, taskIds);
       // Find task, and relevant stages in view
       let task = _.find(_.flatten(_.map(this.stages, 'tasks')), { id: taskId });
       let oldStage = _.find(this.stages, { id: task.stage });
