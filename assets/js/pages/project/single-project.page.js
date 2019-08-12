@@ -79,22 +79,21 @@ parasails.registerPage('single-project', {
           draggable: '.task-item',
           onAdd: function(evt) {
 
-            // Task moved between stages
-            let taskId = parseInt(evt.item.getAttribute('data-id'));
-
             // Pull data-stage-id from new stage
             let stageId = parseInt(evt.to.getAttribute('data-stage-id'));
 
             // Get id array of tasks in stage item was dragged to
-            let idArr = $(evt.to).find('[data-id]').map(function() { return this.getAttribute('data-id')});
+            let idArr = $(evt.to).find('[data-id]').map(function() { return this.getAttribute('data-id') });
 
             // Move task between stages in view
-            that._moveTaskToStage(taskId, stageId, idArr);
+            that._updateTaskPositions(idArr, stageId);
 
           },
           onUpdate: function(evt) {
+
             // Update position IDs in database
             that._updateTaskPositions(sortable_tasks.toArray(), evt.to.getAttribute('data-stage-id'));
+
           }
         });
         $(this).addClass('sortabled');
@@ -185,20 +184,6 @@ parasails.registerPage('single-project', {
         await Cloud.destroyTask(taskId);
         this._clearEditTaskModal();
       }
-    },
-
-    // User dragged a task between stages, update view and store positions in database
-    _moveTaskToStage: async function(taskId, stageId, taskIds) {
-      // Find task, and relevant stages in view
-      let task = _.find(_.flatten(_.map(this.stages, 'tasks')), { id: taskId });
-      let oldStage = _.find(this.stages, { id: task.stage });
-      let newStage = _.find(this.stages, { id: stageId });
-
-      // Move task between stages in view
-      newStage.tasks.push.apply( newStage.tasks, _.remove(oldStage.tasks, { id: task.id }));
-
-      // Store new task positions + stageId in database
-      this._updateTaskPositions(taskIds, stageId);
     },
 
     // User dragged a task around, update positions in database
