@@ -55,7 +55,10 @@ parasails.registerPage('single-project', {
       if (el.val().match(/^New/)) {
         el.select();
       }
-    })
+    });
+
+    // Update greyed-out Not Started styles for each stage
+    this._updateStagesNotStartedStyles();
 
     // New project?
     if (window.location.hash == '#new') {
@@ -107,6 +110,8 @@ parasails.registerPage('single-project', {
       this.editTaskModalOpen = false;
       this.selectedTask = undefined;
       this.cloudError = '';
+      // Update greyed-out Not Started styles for each stage
+      this._updateStagesNotStartedStyles();
     },
 
     clickEditTask: function(taskId) {
@@ -190,6 +195,16 @@ parasails.registerPage('single-project', {
     _updateTaskPositions: async function(taskIds, stageId) {
       // Send to /task/update-task-positions
       await Cloud.updateTaskPositions(_.map(taskIds, Number), stageId);
+
+      // Update greyed-out Not Started styles for each stage
+      this._clearEditTaskModal();
+    },
+
+    _updateStagesNotStartedStyles: function() {
+      $('ol.stages > li').each(function() {
+        console.log(this, $(this).find('.task-item > div[data-status != "Not Started"]').length);
+        $(this).toggleClass('not-started', $(this).find('.task-item > div[data-status != "Not Started"]').length == 0);
+      });
     },
 
 
@@ -200,6 +215,7 @@ parasails.registerPage('single-project', {
       this.editStageModalOpen = false;
       this.selectedStage = undefined;
       this.cloudError = '';
+      this._updateStagesNotStartedStyles();
     },
 
     clickAddStage: async function(projectId) {
