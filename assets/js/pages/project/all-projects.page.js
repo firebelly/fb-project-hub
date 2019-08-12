@@ -32,6 +32,9 @@ parasails.registerPage('all-projects', {
         el.select();
       }
     })
+
+    // Make projects sortable in each client
+    this._sortableClients();
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -39,7 +42,19 @@ parasails.registerPage('all-projects', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
 
-
+    _sortableClients: function() {
+      let that = this;
+      $('ul.projects-list:not(.sortabled)').each(function() {
+        let sortable_projects = new Sortable(this, {
+          draggable: '.project-item',
+          onUpdate: function() {
+            // Update position IDs in database
+            that._updateProjectPositions(sortable_projects.toArray());
+          }
+        });
+        $(this).addClass('sortabled');
+      });
+    },
 
     ///////////////////////
     // Client forms/modals
@@ -74,7 +89,6 @@ parasails.registerPage('all-projects', {
       }
     },
 
-
     _clearEditClientModal: function() {
       this.editClientModalOpen = false;
       this.selectedClient = undefined;
@@ -99,6 +113,8 @@ parasails.registerPage('all-projects', {
 
     closeEditClientModal: function() {
       this._clearEditClientModal();
+      // Init any new clients as sortable
+      this._sortableClients();
     },
 
     parseForm: function() {
@@ -122,6 +138,13 @@ parasails.registerPage('all-projects', {
 
     submittedForm: function() {
       this._clearEditClientModal();
+    },
+
+    // User dragged a project around, update positions in database
+    _updateProjectPositions: async function(projectIds) {
+      console.log(projectIds);
+      // Send to /project/update-project-positions
+      await Cloud.updateProjectPositions(_.map(projectIds, Number));
     },
 
   }

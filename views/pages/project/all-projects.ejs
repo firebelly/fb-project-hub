@@ -9,11 +9,11 @@
     <div v-if="clients.length == 0" class="text-center">
       Your account hasn't been assigned a client yet.
     </div>
-    <ul class="projects-list">
+    <ul class="clients-list">
       <li v-for="client in clients">
         <h2 class="editable" @click="clickEditClient(client.id)">{{ client.title }}</h2>
-        <ul>
-          <li v-for="project in client.projects">
+        <ul class="projects-list">
+          <li v-for="project in client.projects" class="project-item" :data-id="project.id">
             <h4><a :href="'/projects/' + project.id">{{ project.title }}</a></h4>
           </li>
           <button v-if="me.isSuperAdmin" class="add-button" @click="clickAddProject(client.id)">+ Add Project</button>

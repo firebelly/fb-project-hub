@@ -38,7 +38,7 @@ module.exports = {
     }
 
     // Pull stages + tasks for project
-    let stages = await Stage.find({ project: project.id }).populate('tasks');
+    let stages = await Stage.find({ project: project.id }).sort('position ASC').populate('tasks', { sort: 'position ASC' });
 
     // Human friendly format of due date
     for (let stage of stages) {

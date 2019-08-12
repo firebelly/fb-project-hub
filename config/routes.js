@@ -65,6 +65,7 @@ module.exports.routes = {
 
   'PUT    /api/v1/project/:id':                            { action: 'project/update-project' },
   'POST   /api/v1/project/add-stage/:id':                  { action: 'project/add-stage' },
+  'PUT    /api/v1/project/update-project-positions':       { action: 'project/update-project-positions' },
   'DELETE /api/v1/project/:id':                            { action: 'project/destroy-project' },
 
   'POST   /api/v1/stage/add-task/:id':                     { action: 'stage/add-task' },
@@ -72,6 +73,7 @@ module.exports.routes = {
   'DELETE /api/v1/stage/:id':                              { action: 'stage/destroy-stage' },
 
   'PUT    /api/v1/task/:id':                               { action: 'task/update-task' },
+  'PUT    /api/v1/task/update-task-positions':             { action: 'task/update-task-positions' },
   'DELETE /api/v1/task/:id':                               { action: 'task/destroy-task' },
 
   'POST   /api/v1/user/add-user':                          { action: 'user/add-user' },

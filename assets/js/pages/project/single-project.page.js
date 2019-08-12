@@ -33,6 +33,7 @@ parasails.registerPage('single-project', {
   },
 
   mounted: async function() {
+
     // Init tooltips
     $('#single-project')
     .tooltip({
@@ -42,6 +43,9 @@ parasails.registerPage('single-project', {
        // Inherit data-status attribute from div for CSS styles
        $('.tooltip').attr('data-status', $(this).attr('data-status'));
     });
+
+    // Make tasks sortable between stages
+    this._sortableStages();
 
     // Focus first input when opening modal
     $('body').on('shown.bs.modal', '.mdl', function () {
@@ -66,6 +70,37 @@ parasails.registerPage('single-project', {
 
   methods: {
 
+    // Init all stages to be sortable
+    _sortableStages: function() {
+      var that = this;
+      $('ol.stages ul.tasks:not(.sortabled)').each(function() {
+        let sortable_tasks = new Sortable(this, {
+          group: 'project-tasks',
+          draggable: '.task-item',
+          onAdd: function(evt) {
+
+            // Task moved between stages
+            let taskId = parseInt(evt.item.getAttribute('data-id'));
+
+            // Pull data-stage-id from new stage
+            let stageId = parseInt(evt.to.getAttribute('data-stage-id'));
+
+            // Get id array of tasks in stage item was dragged to
+            let idArr = $(evt.to).find('[data-id]').map(function() { return this.getAttribute('data-id')});
+
+            // Send request to controller to update database
+            that._moveTaskToStage(taskId, stageId, idArr);
+
+          },
+          onUpdate: function(evt) {
+            // Update position IDs in database
+            that._updateTaskPositions(sortable_tasks.toArray(), evt.to.getAttribute('data-stage-id'));
+          }
+        });
+        $(this).addClass('sortabled');
+      });
+    },
+
     ///////////////////////
     // Task forms/modals
 
@@ -77,7 +112,7 @@ parasails.registerPage('single-project', {
 
     clickEditTask: function(taskId) {
       // Find task in nested stages.tasks by id
-      this.selectedTask = _.find(_.flatten(_.pluck(this.stages, 'tasks')), { id: taskId })
+      this.selectedTask = _.find(_.flatten(_.map(this.stages, 'tasks')), { id: taskId });
 
       // If not admin and task is clicked, open URL if set for task, or just do nothing
       if (!this.me.isSuperAdmin) {
@@ -152,6 +187,26 @@ parasails.registerPage('single-project', {
       }
     },
 
+    // User dragged a task between stages, update view and store positions in database
+    _moveTaskToStage: async function(taskId, stageId, taskIds) {
+      // Find task, and relevant stages in view
+      let task = _.find(_.flatten(_.map(this.stages, 'tasks')), { id: taskId });
+      let oldStage = _.find(this.stages, { id: task.stage });
+      let newStage = _.find(this.stages, { id: stageId });
+
+      // Move task between stages in view
+      newStage.tasks.push.apply( newStage.tasks, _.remove(oldStage.tasks, { id: task.id }));
+
+      // Store new task positions + stageId in database
+      this._updateTaskPositions(taskIds, stageId);
+    },
+
+    // User dragged a task around, update positions in database
+    _updateTaskPositions: async function(taskIds, stageId) {
+      // Send to /task/update-task-positions
+      await Cloud.updateTaskPositions(_.map(taskIds, Number), stageId);
+    },
+
 
     ///////////////////////
     // Stage forms/modals
@@ -191,6 +246,8 @@ parasails.registerPage('single-project', {
 
     closeEditStageModal: function() {
       this._clearEditStageModal();
+      // Init any new stages as sortable
+      this._sortableStages();
     },
 
     parseStageForm: function() {

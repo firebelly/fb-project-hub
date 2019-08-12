@@ -7,13 +7,13 @@
   </header>
 
   <div class="container">
-    <ol class="tasks-list" start="0">
-      <li v-for="stage in stages">
+    <ol class="stages" start="0">
+      <li v-for="stage in stages" class="stage-item">
         <h2 class="editable" @click="clickEditStage(stage.id)" >{{ stage.title }}</h2>
-        <ul>
-          <li v-for="task in stage.tasks">
+        <ul class="tasks" :data-stage-id="stage.id">
+          <li v-for="task in stage.tasks" class="task-item" :data-id="task.id">
             <div @click="clickEditTask(task.id)" class="task" data-toggle="tooltip" data-placement="bottom" :data-original-title="task.status" :data-status="task.status">
-              <span class="date">{{ task.due_formatted }}</span>
+              <span class="date">{{ task.id }}</span>
               <span class="status"></span>
               <a v-on:click.stop v-if="task.url" :href="task.url" target="_blank" class="title">{{ task.title }}</a>
               <span v-else class="title">{{ task.title }}</span>
