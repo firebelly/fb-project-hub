@@ -189,7 +189,6 @@ parasails.registerPage('single-project', {
 
     // User dragged a task between stages, update view and store positions in database
     _moveTaskToStage: async function(taskId, stageId, taskIds) {
-      console.log(taskId, stageId, taskIds);
       // Find task, and relevant stages in view
       let task = _.find(_.flatten(_.map(this.stages, 'tasks')), { id: taskId });
       let oldStage = _.find(this.stages, { id: task.stage });
