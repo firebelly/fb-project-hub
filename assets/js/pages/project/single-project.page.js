@@ -75,6 +75,12 @@ parasails.registerPage('single-project', {
 
     // Init all stages to be sortable
     _sortableStages: function() {
+
+      // Abort if not admin
+      if (!this.me.isSuperAdmin) {
+        return;
+      }
+
       var that = this;
       $('ol.stages ul.tasks:not(.sortabled)').each(function() {
         let sortable_tasks = new Sortable(this, {

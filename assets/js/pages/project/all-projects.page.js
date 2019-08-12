@@ -43,6 +43,12 @@ parasails.registerPage('all-projects', {
   methods: {
 
     _sortableClients: function() {
+
+      // Abort if not admin
+      if (!this.me.isSuperAdmin) {
+        return;
+      }
+
       let that = this;
       $('ul.projects-list:not(.sortabled)').each(function() {
         let sortable_projects = new Sortable(this, {
