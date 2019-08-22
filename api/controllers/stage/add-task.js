@@ -42,7 +42,7 @@ module.exports = {
     let task = await Task.create({ title: 'New Task', stage: stage.id, position: stage.tasks.length + 1, status: 'Not Started', due: moment().add(1, 'months').format('X') }).fetch();
 
     // Human-formatted date
-    task.due_formatted = moment.unix(task.due).format('MM/YY');
+    task.due_formatted = moment.unix(task.due).format('MM/DD/YYYY');
 
     return {
       task

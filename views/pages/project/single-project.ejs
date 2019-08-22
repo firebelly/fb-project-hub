@@ -51,11 +51,10 @@
         </div>
 
         <div class="form-group mt-2">
-          <label>Due <em>(format as MM/YY)</em></label>
+          <label>Due</label>
           <div class="field-wrap mt-2">
-            <input class="form-control" type="text" v-model="formData.due_formatted" :class="[formErrors.due_formatted ? 'is-invalid' : '']">
-            <div class="invalid-feedback" v-if="formErrors.due_formatted">Please enter in MM/YY format.</div>
-            <% /* <datepicker ref="datepickerref" v-model="formData.due_formatted" placeholder-text="(Choose due date)" :popup="true" :invalid="formErrors.due" validation-error-message="Error message?"></datepicker> */ %>
+            <datepicker ref="datepickerref" v-model="formData.due_formatted" placeholder-text="(Choose due date)" :popup="true" :invalid="formErrors.due_formatted" validation-error-message="Error message?"></datepicker>
+            <div class="invalid-feedback" v-if="formErrors.due_formatted">Please enter a valid date.</div>
           </div>
         </div>
 

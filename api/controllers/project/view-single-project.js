@@ -43,7 +43,7 @@ module.exports = {
     // Human friendly format of due date
     for (let stage of stages) {
       for (let task of stage.tasks) {
-        task.due_formatted = moment.unix(task.due).format('MM/YY');
+        task.due_formatted = moment.unix(task.due).format('MM/DD/YYYY');
       }
     }
 

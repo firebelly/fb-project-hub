@@ -56,7 +56,7 @@ module.exports = {
     // Format timestamp from datepicker
     var due_timestamp = '';
     if (due_formatted) {
-      due_timestamp = moment(due_formatted, 'MM/YY').format('X');
+      due_timestamp = moment(due_formatted, 'MM/DD/YYYY').format('X');
     }
 
     // Update the `Task` record

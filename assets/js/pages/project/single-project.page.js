@@ -135,9 +135,6 @@ parasails.registerPage('single-project', {
       // Set form data to task that was clicked
       this.formData = this.selectedTask;
 
-      // Use full date formatting for input instead of timestamp
-      this.formData.due = this.selectedTask.due_formatted_full;
-
       // Open modal
       this.editTaskModalOpen = true;
     },
@@ -156,7 +153,7 @@ parasails.registerPage('single-project', {
       if(!argins.title) {
         this.formErrors.title = true;
       }
-      if(!argins.due_formatted.match(/^[\d]{1,2}\/[\d]{2}$/)) {
+      if(!argins.due_formatted.match(/^[\d]{1,2}\/[\d]{2}\/[\d]{4}$/)) {
         this.formErrors.due_formatted = true;
       }
 
