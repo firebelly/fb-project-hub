@@ -148,7 +148,6 @@ parasails.registerPage('all-projects', {
 
     // User dragged a project around, update positions in database
     _updateProjectPositions: async function(projectIds) {
-      console.log(projectIds);
       // Send to /project/update-project-positions
       await Cloud.updateProjectPositions(_.map(projectIds, Number));
     },

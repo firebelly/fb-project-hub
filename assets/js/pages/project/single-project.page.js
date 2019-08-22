@@ -76,8 +76,8 @@ parasails.registerPage('single-project', {
     // Init all stages to be sortable
     _sortableStages: function() {
 
-      // Abort if not admin
-      if (!this.me.isSuperAdmin) {
+      // Abort if not admin (or on smaller screens)
+      if (!this.me.isSuperAdmin || $(window).width() < 768) {
         return;
       }
 
@@ -208,7 +208,6 @@ parasails.registerPage('single-project', {
 
     _updateStagesNotStartedStyles: function() {
       $('ol.stages > li').each(function() {
-        console.log(this, $(this).find('.task-item > div[data-status != "Not Started"]').length);
         $(this).toggleClass('not-started', $(this).find('.task-item > div[data-status != "Not Started"]').length == 0);
       });
     },

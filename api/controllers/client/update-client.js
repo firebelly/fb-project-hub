@@ -38,7 +38,6 @@ module.exports = {
 
   fn: async function ({ id, title, user_ids }) {
     var client = await Client.findOne({ id });
-    console.log(user_ids);
 
     // Ensure the thing still exists.
     if (!client) {
