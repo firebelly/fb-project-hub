@@ -19,6 +19,10 @@ module.exports = {
       required: true
     },
 
+    slug: {
+      type: 'string',
+    },
+
   },
 
 
@@ -26,13 +30,17 @@ module.exports = {
     notFound: {
       responseType: 'notFound'
     },
+    slugAlreadyInUse: {
+      statusCode: 409,
+      description: 'The provided slug address is already in use.',
+    },
     success: {
       description: 'Project updated.'
     },
   },
 
 
-  fn: async function ({ id, title }) {
+  fn: async function ({ id, title, slug }) {
     var project = await Project.findOne({ id });
 
     // Ensure Project still exists
@@ -40,9 +48,19 @@ module.exports = {
       throw 'notFound';
     }
 
+    // Check if slug in use
+    var projectWithSlug = await Project.findOne({
+      id: { '!=' : id },
+      slug: slug,
+    });
+    if (projectWithSlug) {
+      throw 'slugAlreadyInUse'
+    }
+
     // Update the `Project` record
     await Project.update({ id }).set({
       title: title,
+      slug: slug,
     });
   }
 

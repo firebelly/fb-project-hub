@@ -123,7 +123,12 @@
           <input class="form-control" type="text" v-model="formData.title" :class="[formErrors.title ? 'is-invalid' : '']">
           <div class="invalid-feedback" v-if="formErrors.title">Please enter a valid title.</div>
         </div>
-        <p class="text-danger" v-if="cloudError"><small>An error occured while processing the form.</small></p>
+        <div class="form-group mt-2">
+          <label>Slug <em>optional, will be used for URL if set, e.g. project/foo instead of project/42</em></label>
+          <input class="form-control" type="text" v-model="formData.slug" :class="[formErrors.slug ? 'is-invalid' : '']">
+        </div>
+        <p class="text-danger" v-if="cloudError === 'slugAlreadyInUse'">That slug is already being used in another project.</p>
+        <p class="text-danger" v-else-if="cloudError"><small>An error occured while processing the form.</small></p>
       </div>
       <div class="modal-footer flex-row-reverse">
         <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>

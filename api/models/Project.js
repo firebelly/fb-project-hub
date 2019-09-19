@@ -2,6 +2,7 @@
 module.exports = {
   attributes: {
     title: { type: 'string', required: true },
+    slug: { type: 'string' },
     position: { type: 'number' },
     client: {
       model: 'Client'

@@ -22,7 +22,15 @@ module.exports = {
 
   fn: async function () {
     let moment = require('moment');
-    let project = await Project.findOne({ id: this.req.param('id') }).populate('client');
+    let projectId = this.req.param('id');
+    let project = null;
+
+    // Support for custom slug URLs
+    if (isNaN(projectId)) {
+      project = await Project.findOne({ slug: projectId }).populate('client');
+    } else {
+      project = await Project.findOne({ id: projectId }).populate('client');
+    }
 
     if (!project) {
       throw 'notFound';

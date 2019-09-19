@@ -14,7 +14,7 @@
         <h2 class="editable" @click="clickEditClient(client.id)">{{ client.title }}</h2>
         <ul class="projects-list">
           <li v-for="project in client.projects" class="project-item" :data-id="project.id">
-            <h4><a :href="'/projects/' + project.id">{{ project.title }}</a></h4>
+            <h4><a :href="'/projects/' + (project.slug ? project.slug : project.id)">{{ project.title }}</a></h4>
           </li>
           <button v-if="me.isSuperAdmin" class="add-button" @click="clickAddProject(client.id)">+ Add Project</button>
         </ul>
