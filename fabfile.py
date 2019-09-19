@@ -13,7 +13,7 @@ def deploy():
   restart()
 
 def prepare():
-  run('sails run deploy')
+  local('npx sails run deploy')
 
 def update():
   with cd(env.remotepath):
