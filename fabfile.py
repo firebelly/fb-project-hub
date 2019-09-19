@@ -21,4 +21,5 @@ def update():
 
 def restart():
   with cd(env.remotepath):
-    run('../bin/stop && ../bin/start')
+    run('../bin/stop')
+    run('../bin/start')
