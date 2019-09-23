@@ -27,7 +27,12 @@ module.exports = {
       throw {redirect: '/'};
     }
 
-    return {};
+    // Sending along a redirect after login?
+    let next = this.req.query.next ? this.req.query.next : '';
+
+    return {
+      next
+    };
 
   }
 
