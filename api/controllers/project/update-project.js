@@ -41,20 +41,23 @@ module.exports = {
 
 
   fn: async function ({ id, title, slug }) {
-    var project = await Project.findOne({ id });
+    let project = await Project.findOne({ id });
+    let redirectTo = '';
 
     // Ensure Project still exists
     if (!project) {
       throw 'notFound';
     }
 
-    // Check if slug in use
-    var projectWithSlug = await Project.findOne({
-      id: { '!=' : id },
-      slug: slug,
-    });
-    if (projectWithSlug) {
-      throw 'slugAlreadyInUse'
+    // Check if slug in use (if not blank)
+    if (slug !== '') {
+      let projectWithSlug = await Project.findOne({
+        id: { '!=' : id },
+        slug: slug,
+      });
+      if (projectWithSlug) {
+        throw 'slugAlreadyInUse'
+      }
     }
 
     // Update the `Project` record
@@ -62,6 +65,14 @@ module.exports = {
       title: title,
       slug: slug,
     });
+
+    // Redirect if slug changed
+    if (project.slug !== slug) {
+      redirectTo = '/projects/' + (slug || id);
+    }
+    return {
+      redirectTo
+    };
   }
 
 

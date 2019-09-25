@@ -355,7 +355,11 @@ parasails.registerPage('single-project', {
       return argins;
     },
 
-    submittedProjectForm: function() {
+    submittedProjectForm: function(res) {
+      // If project slug has changed, redirect to new project URL
+      if (res.redirectTo !== '') {
+        this.goto(res.redirectTo);
+      }
       this._clearEditProjectModal();
     },
 
