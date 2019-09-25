@@ -82,6 +82,23 @@ parasails.registerPage('single-project', {
       }
 
       var that = this;
+
+      // Sortable stages
+      $('ol.stages:not(.sortabled)').each(function() {
+        let sortable_stages = new Sortable(this, {
+          group: 'project-stages',
+          draggable: '.stage-item',
+          onUpdate: function(evt) {
+
+            // Update position IDs in database
+            that._updateStagePositions(sortable_stages.toArray());
+
+          }
+        });
+        $(this).addClass('sortabled');
+      });
+
+      // Sortable tasks
       $('ol.stages ul.tasks:not(.sortabled)').each(function() {
         let sortable_tasks = new Sortable(this, {
           group: 'project-tasks',
@@ -107,6 +124,7 @@ parasails.registerPage('single-project', {
         });
         $(this).addClass('sortabled');
       });
+
     },
 
     ///////////////////////
@@ -201,6 +219,12 @@ parasails.registerPage('single-project', {
 
       // Update greyed-out Not Started styles for each stage
       this._clearEditTaskModal();
+    },
+
+    // User dragged a stage around, update positions in database
+    _updateStagePositions: async function(stageIds) {
+      // Send to /task/update-stage-positions
+      await Cloud.updateStagePositions(_.map(stageIds, Number));
     },
 
     _updateStagesNotStartedStyles: function() {

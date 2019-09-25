@@ -8,7 +8,7 @@
 
   <div class="container">
     <ol class="stages" start="0">
-      <li v-for="stage in stages" class="stage-item">
+      <li v-for="stage in stages" class="stage-item" :data-id="stage.id">
         <h2 class="editable" @click="clickEditStage(stage.id)" >{{ stage.title }}</h2>
         <ul class="tasks" :data-stage-id="stage.id">
           <li v-for="task in stage.tasks" class="task-item" :data-id="task.id">
