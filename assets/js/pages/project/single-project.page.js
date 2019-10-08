@@ -9,6 +9,9 @@ parasails.registerPage('single-project', {
     // Syncing / loading state
     syncing: false,
 
+    // Disables editing and styles tasks darker despite status
+    presentationMode: false,
+
     // Server error state
     cloudError: '',
 
@@ -143,7 +146,7 @@ parasails.registerPage('single-project', {
       this.selectedTask = _.find(_.flatten(_.map(this.stages, 'tasks')), { id: taskId });
 
       // If not admin and task is clicked, open URL if set for task, or just do nothing
-      if (!this.me.isSuperAdmin) {
+      if (!this.me.isSuperAdmin || this.presentationMode) {
         if (this.selectedTask.url !== '') {
           window.open(this.selectedTask.url);
         }
@@ -259,7 +262,7 @@ parasails.registerPage('single-project', {
 
     clickEditStage: function(stageId) {
       // Abort if not admin
-      if (!this.me.isSuperAdmin) { return false; }
+      if (!this.me.isSuperAdmin || this.presentationMode) { return false; }
 
       // Find stage in nested stages.stages by id
       this.selectedStage = _.find(this.stages, { id: stageId })
@@ -320,7 +323,7 @@ parasails.registerPage('single-project', {
 
     clickEditProject: function() {
       // Abort if not admin
-      if (!this.me.isSuperAdmin) { return false; }
+      if (!this.me.isSuperAdmin || this.presentationMode) { return false; }
 
       // Find project in nested projects.projects by id
       this.selectedProject = this.project;

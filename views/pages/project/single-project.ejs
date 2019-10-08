@@ -6,7 +6,7 @@
     </div>
   </header>
 
-  <div class="container">
+  <div class="container" v-bind:class="{'presentation-mode': presentationMode}">
     <ol class="stages" start="0">
       <li v-for="stage in stages" class="stage-item" :data-id="stage.id">
         <h2 class="editable" @click="clickEditStage(stage.id)" >{{ stage.title }}</h2>
@@ -24,6 +24,10 @@
       </li>
     </ol>
     <button v-if="me.isSuperAdmin" class="add-button mt-4" @click="clickAddStage(project.id)">+ Add Stage</button>
+
+    <div v-if="me.isSuperAdmin" class="actions">
+      <label><input type="checkbox" class="presentation-mode" v-model="presentationMode"> Presentation Mode <em>(Disables editing and makes all text black)</em></label>
+    </div>
   </div>
 
   <% /* Edit Task modal */ %>

@@ -60,8 +60,33 @@
 
 #single-project {
 
+  // Actions div at bottom of single project page (just for Presentation Mode toggle right now)
+  .actions {
+    margin-top: 60px;
+    label {
+      color: @disabled;
+      font-size: 12px;
+    }
+    input.presentation-mode {
+      margin-right: 5px;
+    }
+  }
+
   .container {
     padding: 60px 0;
+
+    // Presentation Mode toggled on, hide buttons and make all text black
+    &.presentation-mode {
+      .add-button {
+        display: none;
+      }
+      [data-status="Not Started"] .date,
+      [data-status="Not Started"] .title,
+      ol.stages > li.not-started:before,
+      ol.stages > li.not-started {
+        color: @black;
+      }
+    }
   }
 
   ul {
