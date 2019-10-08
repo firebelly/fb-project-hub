@@ -46,15 +46,15 @@
 [data-status="Not Started"] {
   .date,
   .title {
-    color: #DCDCDC;
+    color: @disabled;
   }
   .tooltip-inner,
   .status {
-    background: #DCDCDC;
+    background: @disabled;
   }
   .arrow::before {
-    border-bottom-color: #DCDCDC !important;
-    border-top-color: #DCDCDC !important;
+    border-bottom-color: @disabled !important;
+    border-top-color: @disabled !important;
   }
 }
 
@@ -121,9 +121,9 @@
       }
 
       &.not-started {
-        color: #DCDCDC;
+        color: @disabled;
         &:before {
-          color: #DCDCDC;
+          color: @disabled;
         }
       }
 
