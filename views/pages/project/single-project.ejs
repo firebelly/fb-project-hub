@@ -8,9 +8,19 @@
     </div>
   </header>
 
-  <div class="container" v-bind:class="{'presentation-mode': presentationMode}">
+  <div class="container stage-wrap" v-bind:class="{'presentation-mode': presentationMode}">
+    <div class="stage-dots">
+      <div class="sticky-top">
+        <ul>
+          <li v-for="stage in stages" class="stage-item" :data-id="stage.id" data-toggle="tooltip" data-placement="right" :data-original-title="stage.title">
+            <a :href="'#stage-' + stage.id"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <ol class="stages" start="0">
-      <li v-for="stage in stages" class="stage-item" :data-id="stage.id">
+      <li v-for="stage in stages" class="stage-item" :data-id="stage.id" :id="'stage-' + stage.id">
         <h2 class="editable" @click="clickEditStage(stage.id)" >{{ stage.title }}</h2>
         <ul class="tasks" :data-stage-id="stage.id">
           <li v-for="task in stage.tasks" class="task-item" :data-id="task.id">

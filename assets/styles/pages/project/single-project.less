@@ -2,14 +2,59 @@
 .tooltip {
   .small-caps;
   .tooltip-inner {
-    background: @white;
-    color: @black;
+    background: @black;
+    color: @white;
   }
 }
 
 // Show datepicker above modal overlay
 #ui-datepicker-div {
   z-index: 2000 !important;
+}
+.stage-wrap {
+  position: relative;
+  ol.stages {
+    margin-right: 30px;
+  }
+}
+.stage-dots {
+  float: right;
+  width: 20px;
+  position: sticky;
+  top: 50px;
+  right: 10px;
+  margin: 10px 0 0 -5px;
+
+  @media (min-width: @breakpoint-sm) {
+    margin-right: -80px;
+  }
+
+  @media (min-width: @breakpoint-md) {
+    margin-right: -150px;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      display: block;
+      padding: 5px;
+      margin-bottom: 10px;
+      a {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border: 1px solid @black;
+        border-radius: 50%;
+      }
+      &.current-stage a {
+        background: @black;
+      }
+      &.not-started a {
+        border-color: @not-started;
+      }
+    }
+  }
 }
 
 // Status colors
@@ -109,7 +154,7 @@
   ol.stages {
     list-style-type: none;
     padding: 0;
-    margin: 40px 0 60px 0;
+    margin: 40px 15px 60px 0;
 
     @media (min-width: @breakpoint-sm) {
       padding: 0 0 0 15px;
@@ -193,7 +238,7 @@
       }
 
       // Style OL counter
-      &:before {
+      &:not(.sortable-drag)::before {
         content: counter(customlistcounter) " ";
         .h2;
         position: absolute;

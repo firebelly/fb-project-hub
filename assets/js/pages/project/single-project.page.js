@@ -43,9 +43,18 @@ parasails.registerPage('single-project', {
       selector: '[data-toggle="tooltip"]',
     })
     .on('mouseenter', '[data-toggle="tooltip"]', function() {
-       // Inherit data-status attribute from div for CSS styles
-       $('.tooltip').attr('data-status', $(this).attr('data-status'));
+      // Inherit data-status attribute from div for CSS styles
+      if ($(this).attr('data-status')) {
+        $('.tooltip').attr('data-status', $(this).attr('data-status'));
+      } else {
+        $('.tooltip').attr('data-status', '');
+      }
     });
+
+    // $(document).on('click', '.stage-dots li', function(e) {
+    //   let id = e.currentTarget.getAttribute('data-id');
+    //   window.scrollTo(0, $(`.stage-item[data-id="${id}"]`).offset().top);
+    // });
 
     // Make tasks sortable between stages
     this._sortableStages();
@@ -95,6 +104,9 @@ parasails.registerPage('single-project', {
 
             // Update position IDs in database
             that._updateStagePositions(sortable_stages.toArray());
+
+            // Update stage-dots
+            that._updateStagesNotStartedStyles();
 
           }
         });
@@ -230,10 +242,20 @@ parasails.registerPage('single-project', {
       await Cloud.updateStagePositions(_.map(stageIds, Number));
     },
 
+    // Set not-started class on various elements based on if stage has any Not Started items
     _updateStagesNotStartedStyles: function() {
-      $('ol.stages > li').each(function() {
-        $(this).toggleClass('not-started', $(this).find('.task-item > div[data-status != "Not Started"]').length == 0);
+      $('ol.stages > li').each(function(i) {
+        console.log(this, i);
+        let $this = $(this);
+        let notStarted = ($this.find('.task-item > div[data-status != "Not Started"]').length == 0);
+        $this.toggleClass('not-started', notStarted);
+        // Update stage-dots styling based on status
+        $('.stage-dots li:eq('+i+')').toggleClass('not-started', notStarted);
       });
+      // Set stage-dots current-stage
+      $('.stage-dots li').removeClass('current-stage');
+      $('.stage-dots li.not-started:first').prev().addClass('current-stage');
+      console.log($('.stage-dots li.not-started:first'));
     },
 
 
