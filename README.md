@@ -22,8 +22,8 @@ Functionality is split among:
 
 - Commit changes to master branch
 - `fab prepare` will run a crazy deploy script that compiles assets and shoves them into a `deploy` branch
-- `fab deploy` will run `git fetch --all && git checkout --force origin/deploy` on the production folder on WebFaction, SCP the assets/fonts dir, then restart the node app
+- `fab deploy` will run `git fetch --all && git checkout --force origin/deploy` on the production folder on WebFaction, then restart the node app
 
 ## Note:
 
-- Fonts omitted from repo need to be manually copied to local assets/fonts/ folder before deploy
+- Fonts omitted from repo need to be manually copied to local assets/fonts/ folder before prepare/deploy
