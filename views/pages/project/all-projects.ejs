@@ -1,7 +1,9 @@
 <div id="all-projects" class="project" v-cloak>
   <header class="main">
-    <div class="title">
-      <h2>Project Hub</h2>
+    <div class="container">
+      <div class="title">
+        <h2>Project Hub</h2>
+      </div>
     </div>
   </header>
 
@@ -11,7 +13,7 @@
     </div>
     <ul class="clients-list">
       <li v-for="client in clients">
-        <h2 class="editable" @click="clickEditClient(client.id)">{{ client.title }}</h2>
+        <h2 class="editable client" @click="clickEditClient(client.id)">{{ client.title }}</h2>
         <ul class="projects-list">
           <li v-for="project in client.projects" class="project-item" :data-id="project.id">
             <h4><a :href="'/projects/' + (project.slug ? project.slug : project.id)">{{ project.title }}</a></h4>
@@ -56,8 +58,8 @@
         <p class="text-danger" v-if="cloudError"><small>An error occured while processing the form.</small></p>
       </div>
       <div class="modal-footer flex-row-reverse">
-        <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
-        <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
+        <ajax-button type="submit" :syncing="syncing" class="btn btn-dark ml-1">Save</ajax-button>
+        <button data-dismiss="modal" class="btn btn-outline-info mr-1">Cancel</button>
         <span class="mr-auto btn btn-danger" @click="clickDestroyClient(formData.id)">Delete</span>
       </div>
     </ajax-form>

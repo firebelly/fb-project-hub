@@ -1,10 +1,18 @@
 <div id="all-users" v-cloak>
+  <header class="main">
+    <div class="container">
+      <div class="title">
+        <h2>Users</h2>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
     <div v-if="successAlert" class="alert alert-success alert-dismissable">
       <a @click="clickResetAlert()" href="#" class="close" aria-label="close">&times;</a>
       {{ successAlert }}
     </div>
-    <h1>Users</h1>
+
     <table class="table">
       <thead>
         <tr>
@@ -79,8 +87,8 @@
         <p class="text-danger" v-if="cloudError">An error occured while processing the form.</p>
       </div>
       <div class="modal-footer flex-row-reverse">
-        <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
-        <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
+        <ajax-button type="submit" :syncing="syncing" class="btn btn-dark ml-1">Save</ajax-button>
+        <button data-dismiss="modal" class="btn btn-outline-info mr-1">Cancel</button>
         <button class="mr-auto btn btn-danger" @click="clickDestroyUser(formData.id)">Delete</button>
       </div>
     </ajax-form>

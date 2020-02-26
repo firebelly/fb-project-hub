@@ -1,7 +1,13 @@
 <div id="edit-profile" v-cloak>
+  <header class="main">
+    <div class="container">
+      <div class="title">
+        <h2>Update profile</h2>
+      </div>
+    </div>
+  </header>
+
   <div class="container">
-    <h1>Update profile</h1>
-    <hr/>
     <ajax-form action="updateProfile" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
       <div class="row">
         <div class="col-sm-6">

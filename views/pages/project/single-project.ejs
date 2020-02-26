@@ -1,8 +1,10 @@
 <div id="single-project" class="project" v-cloak>
   <header class="main">
-    <div class="title">
-      <h2>{{ project.client.title }}</h2>
-      <h4 class="editable" @click="clickEditProject()">{{ project.title }}</h4>
+    <div class="container">
+      <div class="title">
+        <h2 class="client">{{ project.client.title }}</h2>
+        <h4 class="editable" @click="clickEditProject()">{{ project.title }}</h4>
+      </div>
     </div>
   </header>
 
@@ -76,8 +78,8 @@
         <p class="text-danger" v-if="cloudError"><small>An error occured while processing the form.</small></p>
       </div>
       <div class="modal-footer flex-row-reverse">
-        <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
-        <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
+        <ajax-button type="submit" :syncing="syncing" class="btn btn-dark ml-1">Save</ajax-button>
+        <button data-dismiss="modal" class="btn btn-outline-info mr-1">Cancel</button>
         <span class="mr-auto btn btn-danger" @click="clickDestroyTask(formData.id)">Delete</span>
       </div>
     </ajax-form>
@@ -103,8 +105,8 @@
         <p class="text-danger" v-if="cloudError"><small>An error occured while processing the form.</small></p>
       </div>
       <div class="modal-footer flex-row-reverse">
-        <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
-        <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
+        <ajax-button type="submit" :syncing="syncing" class="btn btn-dark ml-1">Save</ajax-button>
+        <button data-dismiss="modal" class="btn btn-outline-info mr-1">Cancel</button>
         <span class="mr-auto btn btn-danger" @click="clickDestroyStage(formData.id)">Delete</span>
       </div>
     </ajax-form>
@@ -135,8 +137,8 @@
         <p class="text-danger" v-else-if="cloudError"><small>An error occured while processing the form.</small></p>
       </div>
       <div class="modal-footer flex-row-reverse">
-        <ajax-button type="submit" :syncing="syncing" class="btn btn-primary ml-1">Save</ajax-button>
-        <button data-dismiss="modal" class="btn btn-outline-primary mr-1">Cancel</button>
+        <ajax-button type="submit" :syncing="syncing" class="btn btn-dark ml-1">Save</ajax-button>
+        <button data-dismiss="modal" class="btn btn-outline-info mr-1">Cancel</button>
         <span class="mr-auto btn btn-danger" @click="clickDestroyProject(formData.id)">Delete</span>
       </div>
     </ajax-form>
