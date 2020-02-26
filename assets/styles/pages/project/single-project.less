@@ -52,6 +52,7 @@
   .tooltip-inner,
   .status span {
     background: @not-started;
+    color: @white;
   }
   .arrow::before {
     border-bottom-color: @not-started !important;
@@ -178,9 +179,9 @@
       }
 
       &.not-started {
-        color: @disabled;
+        color: @not-started;
         &:before {
-          color: @disabled;
+          color: @not-started;
         }
       }
 
