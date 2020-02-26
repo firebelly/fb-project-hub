@@ -24,7 +24,6 @@ module.exports = {
 
 
   fn: async function ({ stages }) {
-    console.log(stages);
     let position = 10;
     for (let id of stages) {
       await Stage.update({ id }).set({

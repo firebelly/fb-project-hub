@@ -245,7 +245,6 @@ parasails.registerPage('single-project', {
     // Set not-started class on various elements based on if stage has any Not Started items
     _updateStagesNotStartedStyles: function() {
       $('ol.stages > li').each(function(i) {
-        console.log(this, i);
         let $this = $(this);
         let notStarted = ($this.find('.task-item > div[data-status != "Not Started"]').length == 0);
         $this.toggleClass('not-started', notStarted);
@@ -255,7 +254,6 @@ parasails.registerPage('single-project', {
       // Set stage-dots current-stage
       $('.stage-dots li').removeClass('current-stage');
       $('.stage-dots li.not-started:first').prev().addClass('current-stage');
-      console.log($('.stage-dots li.not-started:first'));
     },
 
 
