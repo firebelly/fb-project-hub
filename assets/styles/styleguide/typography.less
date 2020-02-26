@@ -11,18 +11,37 @@
     text-rendering: optimizeLegibility;
 }
 
+@font-face {
+  font-family: 'Surt';
+  src: url('../fonts/Surt-Light.eot');
+  src: url('../fonts/Surt-Light.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Surt-Light.woff2') format('woff2'),
+       url('../fonts/Surt-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Surt';
+  src: url('../fonts/Surt-Bold.eot');
+  src: url('../fonts/Surt-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/Surt-Bold.woff2') format('woff2'),
+       url('../fonts/Surt-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
 // Font families:
-@main-font: 'Karla', Helvetica, Arial, sans-serif;
-@header-font: 'StanleyPoster', serif;
+@font-sans: 'Surt', Helvetica, Arial, sans-serif;
+@font-serif: 'StanleyPoster', serif;
 
 // Font weights:
 @bold: 700;
 @normal: 400;
 
 .small-caps() {
-  letter-spacing: .25em;
+  letter-spacing: 0.075em;
   text-transform: uppercase;
-  font: 12px/1.83 @main-font;
+  font: normal 12px/1.83 @font-sans;
 }
 
 .smooth() {
@@ -31,19 +50,35 @@
 }
 
 .h1() {
-  font: 64px/1 @header-font;
+  font: 64px/1 @font-sans;
 }
 h1 {
   .h1;
+  margin-bottom: 1.5rem;
 }
 .h2() {
-  font: 48px/1 @header-font;
+	font: 24px/32px @font-sans;
+
+	@media (min-width: @breakpoint-md) {
+		font: 48px/52px @font-sans;
+	}
 }
 h2 {
   .h2;
 }
+.h2-serif() {
+	font: 30px/32px @font-serif;
+
+	@media (min-width: @breakpoint-md) {
+	  font: 48px/52px @font-serif;
+	}
+}
+h2.client,
+h2.serif {
+	.h2-serif;
+}
 .h3() {
-  font: 36px/1 @header-font;
+  font: 36px/1 @font-sans;
 }
 h3 {
   .h3;
