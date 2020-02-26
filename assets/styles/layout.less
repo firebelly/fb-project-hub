@@ -1,11 +1,137 @@
+// Main layout styles for fb project hub
 @footer-height: 40px;
 @container-md-max-width: 620px;
+
+// Breakopints
+@breakpoint-sm: 480px;
+@breakpoint-md: 768px;
+@breakpoint-nav: 992px;
+@breakpoint-lg: 1200px;
+
+// Animated bg hover
+.inline-link() {
+  background-color: fade(@red, 0);
+  transition: all 0.1s;
+  color: @black;
+
+  &:hover,
+  &:focus {
+    color: @white;
+    border-color: @white;
+    background-color: fade(@red, 100%);
+    box-shadow: .2em .1em 0 fade(@red, 100%), -.2em .1em 0 fade(@red, 100%), -.2em 0 0 fade(@red, 100%), .2em 0 0 fade(@red, 100%);
+    svg {
+      fill: @white;
+    }
+  }
+}
+
+// @media (min-width: 992px) { .container { width: 620px; } }
+// @media (min-width: 1200px) { .container { width: 620px; } }
+
 
 [v-cloak] { display: none; }
 
 html, body {
   height: 100%;
   margin: 0;
+}
+
+body {
+  font: 14px/1.4 @font-sans;
+}
+
+// Header/nav styles
+#page-header {
+  svg {
+    display: inline-block;
+    line-height: 1;
+  }
+  background: @white;
+  a {
+    color: @black;
+  }
+  .navbar {
+    min-height: 64px;
+  }
+  .navbar-brand {
+    padding: 0;
+    display: block;
+
+    svg {
+      opacity: 1;
+      fill: @black;
+      // @include transition(opacity)
+    }
+
+    #logo-f {
+      width: 40px;
+      height: 40px;
+    }
+
+  }
+
+  @media (min-width: @breakpoint-nav) {
+    min-height: 64px;
+    .navbar-brand {
+      .logo-svg {
+        position: relative;
+        svg {
+          position: absolute;
+          top: -25px;
+          right: calc(~"-50vw + 450px");
+        }
+      }
+
+      #logo-f {
+        width: 49px;
+        height: 49px;
+      }
+    }
+  }
+
+  // Arrow down logo
+  .dropdown-toggle {
+    img {
+      display: inline-block;
+      margin-left: 5px;
+    }
+  }
+  .dropdown-toggle::after {
+    display: none;
+  }
+}
+
+.logo-wordmark {
+  top: 14px;
+  left: 47px;
+  position: absolute;
+  z-index: 500;
+  a {
+    display: block;
+    padding: 6px 0 0 24px;
+  }
+
+  svg {
+    width: 75px;
+    height: 20px;
+    display: block;
+    fill: @black;
+  }
+
+  @media (min-width: @breakpoint-nav) {
+    top: 25px;
+    left: calc(~"50vw - 470px");
+    pointer-events: none;
+    transform: rotate(90deg);
+    transform-origin: bottom left;
+
+    svg {
+      width: 88px;
+      height: 22px;
+      fill: @black;
+    }
+  }
 }
 
 #page-wrap {
@@ -21,20 +147,32 @@ html, body {
       height: 20px;
     }
 
-    // Large blue headers
+    // Large text headers
     &.main {
-      background: @blue;
-      text-align: center;
+      background: @bg-lt-gray url("/images/blobs.png") center 65% no-repeat;
+      background-size: 1200px 459px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      height: 30vh;
       min-height: 200px;
       .title {
         flex: 0 1 50%;
+        padding-bottom: 30px;
       }
       h4 {
         .small-caps;
+        font-weight: bold;
+      }
+
+      @media (min-width: @breakpoint-sm) {
+      }
+      @media (min-width: @breakpoint-md) {
+        h4 {
+          padding-top: 35px;
+        }
+        height: 30vh;
+        min-height: 300px;
+        margin-bottom: 30px;
       }
     }
 
