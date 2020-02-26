@@ -10,6 +10,7 @@
 }
 // lesshint-enable
 
+// Custom container widths
 @media (min-width: 992px) { .container { width: 620px; } }
 @media (min-width: 1200px) { .container { width: 620px; } }
 
@@ -17,8 +18,14 @@ img {
   display: block;
 }
 
+// Dropdown hovers
 .dropdown-item:active {
   background: #ccc;
+}
+
+// 100% opacity tooltip
+.tooltip.show {
+  opacity: 1;
 }
 
 // Get rid of weird background on <a>s with button styles
@@ -56,6 +63,7 @@ h1, h2, h3, h4, h5, h6, p, li, blockquote, label {
   }
 }
 
+// Blockquote styles
 blockquote {
   border-left: 3px solid @border-lt-gray;
   padding-left: 20px;
