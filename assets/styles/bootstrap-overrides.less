@@ -17,10 +17,32 @@ img {
   display: block;
 }
 
+.dropdown-item:active {
+  background: #ccc;
+}
+
 // Get rid of weird background on <a>s with button styles
 .btn, [type='button'] {
   -webkit-appearance: none;
 }
+// gray info buttons
+.btn-outline-info {
+  color: @gray;
+  border-color: @gray;
+}
+.btn-outline-info:not(:disabled):not(.disabled):active,
+.btn-outline-info:not(:disabled):not(.disabled).active,
+.show > .btn-outline-info.dropdown-toggle,
+.btn-outline-info:hover {
+  color: @white;
+  background-color: @gray;
+  border-color: @gray;
+}
+.btn-outline-info.disabled, .btn-outline-info:disabled {
+  color: @gray;
+  background-color: transparent;
+}
+
 
 // Custom link styles within bodies of text
 h1, h2, h3, h4, h5, h6, p, li, blockquote, label {
