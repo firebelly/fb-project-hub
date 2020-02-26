@@ -2,7 +2,7 @@
 .tooltip {
   .small-caps;
   .tooltip-inner {
-    background: #fff;
+    background: @white;
     color: @black;
   }
 }
@@ -16,45 +16,46 @@
 [data-status="Ready for Review"] {
   .tooltip-inner,
   .status {
-    background: #E5DBFF !important;
+    background: @ready-for-review !important;
+    color: @white;
   }
   .arrow::before {
-    border-bottom-color: #E5DBFF !important;
-    border-top-color: #E5DBFF !important;
+    border-bottom-color: @ready-for-review !important;
+    border-top-color: @ready-for-review !important;
   }
 }
 [data-status="Approved"] {
   .tooltip-inner,
   .status {
-    background: #A3E2B1;
+    background: @approved;
   }
   .arrow::before {
-    border-bottom-color: #A3E2B1 !important;
-    border-top-color: #A3E2B1 !important;
+    border-bottom-color: @approved !important;
+    border-top-color: @approved !important;
   }
 }
 [data-status="In Progress"] {
   .tooltip-inner,
   .status {
-    background: #FED99E;
+    background: @in-progress;
   }
   .arrow::before {
-    border-bottom-color: #FED99E !important;
-    border-top-color: #FED99E !important;
+    border-bottom-color: @in-progress !important;
+    border-top-color: @in-progress !important;
   }
 }
 [data-status="Not Started"] {
   .date,
   .title {
-    color: @disabled;
+    color: @not-started;
   }
   .tooltip-inner,
   .status {
-    background: @disabled;
+    background: @not-started;
   }
   .arrow::before {
-    border-bottom-color: @disabled !important;
-    border-top-color: @disabled !important;
+    border-bottom-color: @not-started !important;
+    border-top-color: @not-started !important;
   }
 }
 
@@ -64,17 +65,27 @@
   .actions {
     margin-top: 60px;
     label {
-      color: @disabled;
-      font-size: 12px;
+      color: @gray;
+      font-size: 14px;
     }
     input.presentation-mode {
       margin-right: 5px;
     }
   }
 
-  .container {
-    padding: 60px 0;
+  header.main {
+    // Line up title with stages
+    .title {
+      @media (min-width: @breakpoint-sm) {
+        padding-left: 50px;
+      }
+      @media (min-width: @breakpoint-md) {
+        padding-left: 55px;
+      }
+    }
+  }
 
+  .container {
     // Presentation Mode toggled on, hide buttons and make all text black
     &.presentation-mode {
       .add-button {
@@ -96,11 +107,19 @@
   // Stages list
   ol.stages {
     list-style-type: none;
-    margin: 0 0 0 50px;
-    @media (min-width: 768px) {
-      margin: 0;
+    padding: 0;
+    margin: 40px 0 60px 0;
+
+    @media (min-width: @breakpoint-sm) {
+      padding: 0 0 0 15px;
+      margin: 40px 0 60px 20px;
+      border-left: 1px solid @black;
     }
-    border-left: 1px solid @black;
+    @media (min-width: @breakpoint-md) {
+      margin: 60px 0;
+      padding-left: 38px;
+    }
+
     > li {
       counter-increment: customlistcounter;
       position: relative;
@@ -109,32 +128,44 @@
         padding-bottom: 0;
       }
       >h2 {
-        padding: 8px 12px;
+        padding: 8px 12px 8px 30px;
+
+        @media (min-width: @breakpoint-sm) {
+          padding: 8px 12px;
+        }
       }
       a {
         color: @black;
         text-decoration: underline;
       }
       .task {
-        padding: 15px;
-        border: 1px solid rgba(0,0,0,0);
-        border-radius: 50px;
-        vertical-align: bottom;
-        transition: box-shadow 0.2s;
+
         span {
           display: inline-block;
           vertical-align: middle;
         }
+        padding: 5px;
 
-        &:hover {
-          cursor: pointer;
-          border: 1px solid rgba(0,0,0,0.1);
-          box-shadow: 0px 5px 5px -5px rgba(0,0,0,0.2);
+        @media (min-width: @breakpoint-sm) {
+          padding: 15px;
+          border: 1px solid rgba(0,0,0,0);
+          border-radius: 50px;
+          vertical-align: bottom;
+          transition: box-shadow 0.2s;
+
+          &:hover {
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0px 5px 5px -5px rgba(0,0,0,0.2);
+          }
+
         }
-        .title {
-        }
+
+        .title {}
         .date {
           .small-caps;
+          font-weight: bold;
+          min-width: 90px;
         }
         .status {
           width: 15px;
@@ -156,13 +187,19 @@
       &:before {
         content: counter(customlistcounter) " ";
         .h2;
-        width: 1em;
         position: absolute;
-        left: -1.35em;
-        text-align: center;
-        background: #fff;
         padding: 8px;
+        left: -0.35em;
+        width: 1em;
+        min-width: 32px;
+        text-align: center;
+
+        @media (min-width: @breakpoint-sm) {
+          left: -1.35em;
+          background: @white;
+        }
       }
+
       &:first-child {
         counter-reset: customlistcounter;
       }
