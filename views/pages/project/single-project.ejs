@@ -15,10 +15,12 @@
         <ul class="tasks" :data-stage-id="stage.id">
           <li v-for="task in stage.tasks" class="task-item" :data-id="task.id">
             <div @click="clickEditTask(task.id)" class="task" data-toggle="tooltip" data-placement="bottom" :data-original-title="task.status" :data-status="task.status">
-              <span class="date">{{ task.due_formatted }}</span>
-              <span class="status"></span>
-              <a v-on:click.stop v-if="task.url" :href="task.url" target="_blank" class="title">{{ task.title }}</a>
-              <span v-else class="title">{{ task.title }}</span>
+              <div class="date">{{ task.due_formatted }}</div>
+              <div class="status"><span></span></div>
+              <div class="title">
+                <a v-if="task.url" v-on:click.stop :href="task.url" target="_blank" class="title">{{ task.title }}</a>
+                <span v-else>{{ task.title }}</span>
+              </div>
             </div>
           </li>
         </ul>

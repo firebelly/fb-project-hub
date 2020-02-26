@@ -15,7 +15,7 @@
 // Status colors
 [data-status="Ready for Review"] {
   .tooltip-inner,
-  .status {
+  .status span {
     background: @ready-for-review !important;
     color: @white;
   }
@@ -26,7 +26,7 @@
 }
 [data-status="Approved"] {
   .tooltip-inner,
-  .status {
+  .status span {
     background: @approved;
   }
   .arrow::before {
@@ -36,7 +36,7 @@
 }
 [data-status="In Progress"] {
   .tooltip-inner,
-  .status {
+  .status span {
     background: @in-progress;
   }
   .arrow::before {
@@ -50,7 +50,7 @@
     color: @not-started;
   }
   .tooltip-inner,
-  .status {
+  .status span {
     background: @not-started;
   }
   .arrow::before {
@@ -139,9 +139,8 @@
         text-decoration: underline;
       }
       .task {
-
-        span {
-          display: inline-block;
+        display: flex;
+        > div {
           vertical-align: middle;
         }
         padding: 5px;
@@ -168,11 +167,13 @@
           min-width: 90px;
         }
         .status {
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          vertical-align: middle;
-          margin: 0 5px 0 3px;
+          span {
+            display: block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin: 2px 10px 5px;
+          }
         }
       }
 
