@@ -18,6 +18,8 @@ def prepare():
 def update():
   with cd(env.remotepath):
     run('git fetch --all && git checkout --force origin/{0}'.format(env.git_branch))
+  # SCP fonts
+  put('assets/fonts', env.remotepath + '.www/dist/fonts/')
 
 def restart():
   with cd(env.remotepath):

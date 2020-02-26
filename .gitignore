@@ -133,5 +133,5 @@ lib-cov
 *.pid
 
 *.pyc
-fonts/Surt*
-fonts/Stanley*
+assets/fonts/Surt*
+assets/fonts/Stanley*
