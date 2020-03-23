@@ -74,12 +74,13 @@
         <div class="form-group mt-2">
           <label><strong>Clients</strong></label>
           <div class="field-wrap">
-            <div v-for="client in clients" class="form-check">
-              <label class="form-check-label">
-                <input v-model="formData.client_ids" class="form-check-input" type="checkbox" :value="client.id">
+            <select class="choices" multiple="true" v-model="formData.client_ids">
+              <option
+                v-for="client in clients"
+                :value="client.id">
                 {{ client.title }}
-              </label>
-            </div>
+              </option>
+            </select>
           </div>
         </div>
 

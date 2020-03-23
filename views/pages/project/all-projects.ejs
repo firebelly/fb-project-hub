@@ -46,16 +46,12 @@
         <div class="form-group mt-2">
           <label>Users</label>
           <div class="field-wrap">
-            <select
-                  class="choices"
-                  multiple="true"
-                  v-model="formData.user_ids"
-                  >
-                  <option
-                    v-for="user in users"
-                    :value="user.id">
-                    {{ user.fullName }} - {{ user.emailAddress }}
-                  </option>
+            <select class="choices" multiple="true" v-model="formData.user_ids">
+              <option
+                v-for="user in users"
+                :value="user.id">
+                {{ user.fullName }} - {{ user.emailAddress }}
+              </option>
             </select>
           </div>
         </div>

@@ -93,6 +93,21 @@ parasails.registerPage('all-users', {
 
       // Open modal
       this.editUserModalOpen = true;
+
+      // Init Choices multiselect
+      setTimeout(function() {
+        let multiSelect = document.querySelector('select.choices');
+        if (multiSelect) {
+          const choices = new Choices(multiSelect, {
+            itemSelectText: ''
+          });
+          // Hide choices dropdown on select
+          multiSelect.addEventListener('choice', function() {
+            choices.hideDropdown();
+          });
+        }
+      }, 150);
+
     },
 
     closeEditUserModal: function() {

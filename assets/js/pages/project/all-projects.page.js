@@ -116,6 +116,7 @@ parasails.registerPage('all-projects', {
       // Open modal
       this.editClientModalOpen = true;
 
+      // Init Choices multiselect
       setTimeout(function() {
         let multiSelect = document.querySelector('select.choices');
         if (multiSelect) {
