@@ -99,7 +99,8 @@ parasails.registerPage('all-users', {
         let multiSelect = document.querySelector('select.choices');
         if (multiSelect) {
           const choices = new Choices(multiSelect, {
-            itemSelectText: ''
+            itemSelectText: '',
+            removeItemButton: true
           });
           // Hide choices dropdown on select
           multiSelect.addEventListener('choice', function() {
