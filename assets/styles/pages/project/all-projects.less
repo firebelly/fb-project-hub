@@ -5,6 +5,20 @@ body[data-issuperadmin="true"] {
   }
 }
 
+// Choices overrides
+.choices__inner {
+  border-radius: 0.25rem!important;
+}
+.choices__list--multiple .choices__item {
+  border-radius: 0.25rem!important;
+  border: none!important;
+  background-color: @blue!important;
+  color: @black!important;
+  &.is-highlighted {
+    background-color: darken(@blue, 5%)!important;
+  }
+}
+
 // Label notes
 label {
   em {
