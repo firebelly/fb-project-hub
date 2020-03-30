@@ -69,6 +69,16 @@
     border-top-color: @ready-for-review !important;
   }
 }
+[data-status="Completed"] {
+  .tooltip-inner,
+  .status span {
+    background: @completed;
+  }
+  .arrow::before {
+    border-bottom-color: @completed !important;
+    border-top-color: @completed !important;
+  }
+}
 [data-status="Approved"] {
   .tooltip-inner,
   .status span {
