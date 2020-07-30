@@ -59,7 +59,7 @@ module.exports.custom = {
   //--------------------------------------------------------------------------
 
   // The sender that all outgoing emails will appear to come from.
-  fromEmailAddress: 'noreply@firebellydesign.com',
+  fromEmailAddress: 'noreply@firebelly.co',
   fromName: 'Firebelly Project Hub',
 
   // Email address for receiving support messages & other correspondences.
