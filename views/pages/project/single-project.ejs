@@ -34,10 +34,10 @@
             </div>
           </li>
         </ul>
-        <button v-if="me.isSuperAdmin" class="mt-3 add-button" @click="clickAddTask(stage.id)">+ Add Task</button>
+        <button v-if="me.isSuperAdmin" class="mt-3 add-button" @click="clickAddTask(stage.id)">Add Task</button>
       </li>
     </ol>
-    <button v-if="me.isSuperAdmin" class="add-button mt-4" @click="clickAddStage(project.id)">+ Add Stage</button>
+    <button v-if="me.isSuperAdmin" class="btn btn-dark mt-4 -admin-button" @click="clickAddStage(project.id)">Add Stage</button>
 
     <div v-if="me.isSuperAdmin" class="actions">
       <label><input type="checkbox" class="presentation-mode" v-model="presentationMode"> Presentation Mode <em>(Disables editing and makes all text black)</em></label>

@@ -1,5 +1,21 @@
 #all-users {
   tr.user-row {
-  	cursor: pointer;
+    cursor: pointer;
+  }
+
+  @media (max-width: @breakpoint-sm) {
+    // Hide elements that break layout on small screens
+    table.user-list {
+      table-layout:fixed;
+      th:nth-child(n+3),
+      td:nth-child(n+3) {
+        display: none;
+      }
+      td:nth-child(2) {
+        max-width: 50%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
   }
 }
