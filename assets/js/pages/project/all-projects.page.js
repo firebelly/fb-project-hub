@@ -77,6 +77,29 @@ parasails.registerPage('all-projects', {
 
       // Open edit client modal w/ new client
       this.editClientModalOpen = true;
+
+      // Init Choices multiselect
+      this._initSelects();
+
+    },
+
+    _initSelects: function() {
+
+      // Init Choices multiselect
+      setTimeout(function() {
+        let multiSelect = document.querySelector('select.choices');
+        if (multiSelect) {
+          const choices = new Choices(multiSelect, {
+            itemSelectText: '',
+            removeItemButton: true
+          });
+          // Hide choices dropdown on select
+          multiSelect.addEventListener('choice', function() {
+            choices.hideDropdown();
+          });
+        }
+      }, 150);
+
     },
 
     // Adding project for client
@@ -117,19 +140,7 @@ parasails.registerPage('all-projects', {
       this.editClientModalOpen = true;
 
       // Init Choices multiselect
-      setTimeout(function() {
-        let multiSelect = document.querySelector('select.choices');
-        if (multiSelect) {
-          const choices = new Choices(multiSelect, {
-            itemSelectText: '',
-            removeItemButton: true
-          });
-          // Hide choices dropdown on select
-          multiSelect.addEventListener('choice', function() {
-            choices.hideDropdown();
-          });
-        }
-      }, 150);
+      this._initSelects();
 
     },
 

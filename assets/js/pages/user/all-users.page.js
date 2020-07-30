@@ -56,6 +56,8 @@ parasails.registerPage('all-users', {
       this.formData = this.selectedUser;
 
       this.editUserModalOpen = true;
+
+      this._initSelects();
     },
 
     clickResetAlert: function() {
@@ -78,21 +80,7 @@ parasails.registerPage('all-users', {
       this.cloudError = '';
     },
 
-    clickEditUser: function(userId) {
-      // Clear out alert
-      this.successAlert = '';
-
-      // Find user by id
-      this.selectedUser = _.find(this.users, { id: userId })
-
-      // Always clear out newPassword field
-      this.selectedUser.newPassword = '';
-
-      // Set form data to user that was clicked
-      this.formData = this.selectedUser;
-
-      // Open modal
-      this.editUserModalOpen = true;
+    _initSelects: function() {
 
       // Init Choices multiselect
       setTimeout(function() {
@@ -109,6 +97,26 @@ parasails.registerPage('all-users', {
         }
       }, 150);
 
+    },
+
+    clickEditUser: function(userId) {
+      // Clear out alert
+      this.successAlert = '';
+
+      // Find user by id
+      this.selectedUser = _.find(this.users, { id: userId })
+
+      // Always clear out newPassword field
+      this.selectedUser.newPassword = '';
+
+      // Set form data to user that was clicked
+      this.formData = this.selectedUser;
+
+      // Open modal
+      this.editUserModalOpen = true;
+
+      // Init selects
+      this._initSelects();
     },
 
     closeEditUserModal: function() {
