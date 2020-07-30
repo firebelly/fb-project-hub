@@ -64,6 +64,7 @@
               <a class="dropdown-item" href="/account">My Account</a>
               <% if(me&&me.isSuperAdmin) { %>
                 <a class="dropdown-item" href="/users">Manage Users</a>
+                <a class="dropdown-item" href="/secrets">Secrets</a>
               <% } %>
               <a class="dropdown-item" href="/logout">Sign out</a>
             </div>
@@ -116,9 +117,6 @@
       (https://sailsjs.com/docs/concepts/assets/task-automation)
     */ %>
 
-    <% /* Load Stripe Checkout */ %>
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-
     <% /* Choices.js for fancy multi-selects */ %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
@@ -162,6 +160,8 @@
     <script src="/js/pages/homepage.page.js"></script>
     <script src="/js/pages/project/all-projects.page.js"></script>
     <script src="/js/pages/project/single-project.page.js"></script>
+    <script src="/js/pages/secret/add-secret.js"></script>
+    <script src="/js/pages/secret/all-secrets.page.js"></script>
     <script src="/js/pages/user/all-users.page.js"></script>
     <!--SCRIPTS END-->
 

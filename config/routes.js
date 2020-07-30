@@ -27,6 +27,9 @@ module.exports.routes = {
 
   'GET /users':              { action: 'user/view-all-users' },
 
+  'GET /secrets':            { action: 'secret/view-all-secrets' },
+  'GET /share-secret':       { action: 'secret/view-add-secret' },
+
   'GET /account':            { action: 'account/view-account-overview' },
   'GET /account/password':   { action: 'account/view-edit-password' },
   'GET /account/profile':    { action: 'account/view-edit-profile' },
@@ -80,6 +83,9 @@ module.exports.routes = {
   'POST   /api/v1/user/add-user':                          { action: 'user/add-user' },
   'PUT    /api/v1/user/:id':                               { action: 'user/update-user' },
   'DELETE /api/v1/user/:id':                               { action: 'user/destroy-user' },
+
+  'POST   /api/v1/secret/add-secret':                      { action: 'secret/add-secret' },
+  'DELETE /api/v1/secret/:id':                             { action: 'secret/destroy-secret' },
 
 
 };
