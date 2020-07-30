@@ -23,7 +23,7 @@ module.exports = {
 
     var user = await User.create({
       fullName: 'New User',
-      emailAddress: 'user@foo.com',
+      emailAddress: 'replaceme-'+Date.now()+'@example.com',
       password: await sails.helpers.passwords.hashPassword('abc123')
     })
     .intercept('E_UNIQUE', 'emailAlreadyInUse')
