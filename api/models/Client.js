@@ -1,4 +1,8 @@
-// api/models/Client.js
+/**
+ * Client.js
+ *
+ * A client who we assign projects to
+ */
 module.exports = {
   attributes: {
     title: { type: 'string', required: true },

@@ -1,4 +1,8 @@
-// api/models/Task.js
+/**
+ * Task.js
+ *
+ * Tasks in stages in projects
+ */
 module.exports = {
   attributes: {
     title: { type: 'string', required: true },

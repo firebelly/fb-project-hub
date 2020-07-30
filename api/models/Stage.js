@@ -1,4 +1,8 @@
-// api/models/Stage.js
+/**
+ * Stage.js
+ *
+ * Stages in projects that have tasks
+ */
 module.exports = {
   attributes: {
     title: { type: 'string', required: true },

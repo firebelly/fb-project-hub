@@ -1,4 +1,8 @@
-// api/models/Product.js
+/**
+ * Project.js
+ *
+ * Projects for a client
+ */
 module.exports = {
   attributes: {
     title: { type: 'string', required: true },
