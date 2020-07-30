@@ -38,8 +38,10 @@ module.exports = {
       throw 'notFound';
     }
 
+    let nextStageNum = project.stages.length + 1;
+
     // Add new Stage to Project
-    let stage = await Stage.create({ title: 'New stage', project: project.id, position: project.stages.length + 1 }).fetch();
+    let stage = await Stage.create({ title: 'Stage ' + nextStageNum, project: project.id, position: nextStageNum }).fetch();
 
     // Empty array of relations for view
     stage.tasks = [];
