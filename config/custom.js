@@ -51,8 +51,8 @@ module.exports.custom = {
   * (https://app.mailgun.com/app/domains)                                   *
   *                                                                         *
   **************************************************************************/
-  mailgunDomain: 'sandboxfb0bf2c9e4bd404fbaebadfbda88c0d6.mailgun.org',
-  mailgunSecret: 'pubkey-02c8efaac83d7782fdee6e31ae41cb2f',
+  mailgunDomain: 'mg.test.com',
+  mailgunSecret: 'key-test-foo',
   //--------------------------------------------------------------------------
   // /\  Configure these to enable support for automated emails.
   // ||  (Important for password recovery, verification, contact form, etc.)
