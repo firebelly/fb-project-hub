@@ -1,10 +1,10 @@
 from fabric.api import *
 import os
 
-env.hosts = ['hub.firebelly.co']
+env.hosts = ['firebelly.opalstacked.com']
 env.user = 'firebelly'
 env.path = '~/Firebelly/fb-project-hub'
-env.remotepath = '/home/firebelly/webapps/fb_project_hub/fb-project-hub'
+env.remotepath = '/home/firebelly/apps/fb-project-hub/fb-project-hub'
 env.git_branch = 'deploy'
 env.warn_only = True
 
@@ -21,5 +21,5 @@ def update():
 
 def restart():
   with cd(env.remotepath):
-    run('../bin/stop')
-    run('../bin/start')
+    run('../stop')
+    run('../start')
