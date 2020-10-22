@@ -18,6 +18,7 @@ def prepare():
 def update():
   with cd(env.remotepath):
     run('git fetch --all && git checkout --force origin/{0}'.format(env.git_branch))
+    run('npm install')
 
 def restart():
   with cd(env.remotepath):
