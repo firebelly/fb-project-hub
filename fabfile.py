@@ -22,5 +22,13 @@ def update():
 
 def restart():
   with cd(env.remotepath):
+    run('../stop && sleep 5')
+    run('../start')
+
+def stop():
+  with cd(env.remotepath):
     run('../stop')
+
+def start():
+  with cd(env.remotepath):
     run('../start')
