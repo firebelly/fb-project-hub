@@ -3,6 +3,7 @@ import os
 
 env.hosts = ['firebelly.opalstacked.com']
 env.user = 'firebelly'
+env.shell = '/bin/bash -lic' # interactive shell to source .bashrc
 env.path = '~/Firebelly/fb-project-hub'
 env.remotepath = '/home/firebelly/apps/fb-project-hub/fb-project-hub'
 env.git_branch = 'deploy'
@@ -18,17 +19,9 @@ def prepare():
 def update():
   with cd(env.remotepath):
     run('git fetch --all && git checkout --force origin/{0}'.format(env.git_branch))
-    run('npm install')
+    run('npm install &>/dev/null')
 
 def restart():
   with cd(env.remotepath):
-    run('../stop && sleep 5')
-    run('../start')
-
-def stop():
-  with cd(env.remotepath):
     run('../stop')
-
-def start():
-  with cd(env.remotepath):
     run('../start')
