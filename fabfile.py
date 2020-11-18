@@ -1,5 +1,4 @@
 from fabric.api import *
-import os
 
 env.hosts = ['firebelly.opalstacked.com']
 env.user = 'firebelly'

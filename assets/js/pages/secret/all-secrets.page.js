@@ -17,13 +17,9 @@ parasails.registerPage('all-secrets', {
     _.extend(this, SAILS_LOCALS);
   },
   mounted: async function() {
-    // Set textareas to height of content
-    $('textarea').each(function() {
-      var $this = $(this);
-      while($this.outerHeight() < $this[0].scrollHeight + parseFloat($this.css('borderTopWidth')) + parseFloat($this.css('borderBottomWidth'))) {
-        $this.height($this.height()+1);
-      };
-    });
+
+    var expandTextareas = parasails.require('expandTextareas');
+    expandTextareas();
 
     $('.copy-to-clipboard').on('click', function() {
       var textId = this.getAttribute('data-id');
@@ -55,6 +51,9 @@ parasails.registerPage('all-secrets', {
         _.remove(this.secrets, { id: secretId });
         await Cloud.destroySecret(secretId);
         this.$forceUpdate();
+
+        var expandTextareas = parasails.require('expandTextareas');
+        expandTextareas();
       }
     },
 
