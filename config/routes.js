@@ -15,6 +15,7 @@ module.exports.routes = {
   // ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
   'GET /':                   { action: 'view-homepage-or-redirect' },
   'GET /projects/':          { action: 'project/view-all-projects' },
+  'GET /archived-projects/': { action: 'project/view-archived-projects' },
   'GET /projects/:id':       { action: 'project/view-single-project' },
 
   // 'GET /signup':             { action: 'entrance/view-signup' },

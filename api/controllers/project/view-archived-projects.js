@@ -1,16 +1,16 @@
 module.exports = {
 
 
-  friendlyName: 'View All Projects',
+  friendlyName: 'View All Archived Projects',
 
 
-  description: 'Display list of all clients + projects.',
+  description: 'Display list of all archived clients + projects.',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/project/all-projects'
+      viewTemplatePath: 'pages/project/archived-projects'
     }
 
   },
@@ -20,7 +20,7 @@ module.exports = {
     let clients = [];
     // If we're an admin, get all clients
     if (this.req.me.isSuperAdmin) {
-      clients = await Client.find({ where: { archived: false } }).populate('projects', { sort: 'position ASC' }).populate('users');
+      clients = await Client.find({ where: { archived: true } }).populate('projects', { sort: 'position ASC' }).populate('users');
     } else {
       // Otherwise just pull clients for logged in non-admin user
       let user = await User.findOne({ id: this.req.me.id }).populate('clients');

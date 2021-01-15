@@ -14,5 +14,6 @@ module.exports = {
       collection: 'User',
       via: 'clients'
     },
+    archived: { type: 'boolean', defaultsTo: false },
   },
 };

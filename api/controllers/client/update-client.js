@@ -23,6 +23,10 @@ module.exports = {
       type: ['number'],
     },
 
+    archived: {
+      type: 'boolean',
+    },
+
   },
 
 
@@ -36,7 +40,7 @@ module.exports = {
   },
 
 
-  fn: async function ({ id, title, user_ids }) {
+  fn: async function ({ id, title, user_ids, archived }) {
     var client = await Client.findOne({ id });
 
     // Ensure the thing still exists.
@@ -48,6 +52,7 @@ module.exports = {
     await Client.update({ id }).set({
       title: title,
       users: user_ids,
+      archived: archived,
     });
   }
 
