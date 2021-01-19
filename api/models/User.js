@@ -167,7 +167,9 @@ without necessarily having a billing card.`
     clients: {
       collection: 'Client',
       via: 'users'
-    }
+    },
+
+    archived: { type: 'boolean', defaultsTo: false },
 
 
   },

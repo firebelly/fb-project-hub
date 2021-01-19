@@ -28,6 +28,10 @@ module.exports = {
       type: 'number'
     },
 
+    archived: {
+      type: 'boolean'
+    },
+
     client_ids: {
       type: ['number'],
     },
@@ -57,7 +61,7 @@ module.exports = {
   },
 
 
-  fn: async function ({ id, fullName, emailAddress, isSuperAdmin, client_ids, newPassword }) {
+  fn: async function ({ id, fullName, emailAddress, isSuperAdmin, archived, client_ids, newPassword }) {
 
     var user = await User.findOne({ id });
 
@@ -71,6 +75,7 @@ module.exports = {
       fullName: fullName,
       emailAddress: emailAddress.toLowerCase(),
       isSuperAdmin: isSuperAdmin,
+      archived: archived,
       clients: client_ids,
     }, newPassword? {
       password: await sails.helpers.passwords.hashPassword(newPassword)

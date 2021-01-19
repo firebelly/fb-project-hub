@@ -1,16 +1,16 @@
 module.exports = {
 
 
-  friendlyName: 'View All Users',
+  friendlyName: 'View All Archived Users',
 
 
-  description: 'Display list of all users.',
+  description: 'Display list of all archived users.',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/user/all-users'
+      viewTemplatePath: 'pages/user/archived-users'
     }
 
   },
@@ -19,7 +19,7 @@ module.exports = {
   fn: async function () {
 
     var moment = require('moment');
-    var users = await User.find({ where: { archived: false } }).populate('clients');
+    var users = await User.find({ where: { archived: true } }).populate('clients');
     var clients = await Client.find();
 
     for (let user of users) {

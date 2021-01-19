@@ -27,6 +27,7 @@ module.exports.routes = {
   'GET /password/new':       { action: 'entrance/view-new-password' },
 
   'GET /users':              { action: 'user/view-all-users' },
+  'GET /archived-users':     { action: 'user/view-archived-users' },
 
   'GET /secrets':            { action: 'secret/view-all-secrets' },
   'GET /share-secret':       { action: 'secret/view-add-secret' },
