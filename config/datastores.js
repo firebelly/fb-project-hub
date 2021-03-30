@@ -49,7 +49,7 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-mysql',
-    url: 'mysql://root:@localhost:3306/fb_project_hub_local',
+    url: 'mysql://root:root@localhost:3306/fb_project_hub',
 
   },
 
