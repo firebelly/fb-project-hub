@@ -20,12 +20,12 @@ module.exports = {
     let clients = [];
     // If we're an admin, get all clients
     if (this.req.me.isSuperAdmin) {
-      clients = await Client.find({ where: { archived: false } }).populate('projects', { sort: 'position ASC' }).populate('users');
+      clients = await Client.find().sort('title ASC').populate('projects', { sort: 'position ASC' }).populate('users');
     } else {
       // Otherwise just pull clients for logged in non-admin user
       let user = await User.findOne({ id: this.req.me.id }).populate('clients');
       let client_ids = _.map(user.clients, 'id');
-      clients = await Client.find({ id: { in: client_ids }}).populate('projects', { sort: 'position ASC' }).populate('users');
+      clients = await Client.find({ id: { in: client_ids }}).sort('title ASC').populate('projects', { sort: 'position ASC' }).populate('users');
     }
 
     // Populate form-friendly array of user_ids for each client

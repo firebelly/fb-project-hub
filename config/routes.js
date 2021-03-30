@@ -15,7 +15,6 @@ module.exports.routes = {
   // ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
   'GET /':                   { action: 'view-homepage-or-redirect' },
   'GET /projects/':          { action: 'project/view-all-projects' },
-  'GET /archived-projects/': { action: 'project/view-archived-projects' },
   'GET /projects/:id':       { action: 'project/view-single-project' },
 
   // 'GET /signup':             { action: 'entrance/view-signup' },
@@ -27,7 +26,6 @@ module.exports.routes = {
   'GET /password/new':       { action: 'entrance/view-new-password' },
 
   'GET /users':              { action: 'user/view-all-users' },
-  'GET /archived-users':     { action: 'user/view-archived-users' },
 
   'GET /secrets':            { action: 'secret/view-all-secrets' },
   'GET /share-secret':       { action: 'secret/view-add-secret' },

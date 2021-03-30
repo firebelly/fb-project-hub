@@ -5,6 +5,7 @@ parasails.registerPage('all-projects', {
   data: {
     formErrors: {},
     selectedClient: undefined,
+    viewArchived: false,
 
     // Syncing / loading state
     syncing: false,

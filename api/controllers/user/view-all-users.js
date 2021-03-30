@@ -19,7 +19,7 @@ module.exports = {
   fn: async function () {
 
     var moment = require('moment');
-    var users = await User.find({ where: { archived: false } }).populate('clients');
+    var users = await User.find().sort('fullName').populate('clients');
     var clients = await Client.find();
 
     for (let user of users) {

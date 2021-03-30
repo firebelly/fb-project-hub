@@ -6,6 +6,7 @@ parasails.registerPage('all-users', {
     formErrors: {},
     selectedUser: undefined,
     successAlert: '',
+    viewArchived: false,
 
     // Syncing / loading state
     syncing: false,

@@ -4,8 +4,9 @@
       <div class="title d-flex justify-content-between align-items-end">
         <h2>Users</h2>
         <div>
-          <span><button @click="clickAddUser()" class="btn btn-dark btn-sm">Add User</button></span>
-          <span><a href="/archived-users/" class="btn btn-dark btn-sm">Archived Users</a></span>
+          <button @click="clickAddUser()" class="btn btn-dark btn-sm">Add User</button>
+          &nbsp;
+          <label><input v-model="viewArchived" type="checkbox"> View Archived</label>
         </div>
       </div>
     </div>
@@ -27,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in users" @click="clickEditUser(user.id)" class="user-row">
+        <tr v-for="user in users" @click="clickEditUser(user.id)" class="user-row" v-if="user.archived == viewArchived" v-cloak>
           <td>{{ user.fullName }}</td>
           <td>{{ user.emailAddress }}</td>
           <td>{{ user.isSuperAdmin ? '&check;' : '' }}</td>
@@ -72,8 +73,14 @@
         </div>
 
         <div class="form-group mt-2">
-          <label><input type="checkbox" value="1" v-model="formData.isSuperAdmin"> Admin user</label>
-          <label><input type="checkbox" value="1" v-model="formData.archived"> Archived</label>
+          <div class="row">
+            <div class="col-sm-6">
+              <label><input type="checkbox" value="1" v-model="formData.isSuperAdmin"> Admin user</label>
+            </div>
+            <div class="col-sm-6">
+              <label><input type="checkbox" value="1" v-model="formData.archived"> Archived</label>
+            </div>
+          </div>
         </div>
 
         <div class="form-group mt-2">
